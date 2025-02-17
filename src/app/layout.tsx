@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
+import Footer from "./components/Footer";
 
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
-  weight: "100",
+  weight: "400",
 });
 
 const inter = Inter({
@@ -27,6 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.variable} ${inter.variable} antialiased`}>
         {children}
+        <Footer />
       </body>
     </html>
   );
@@ -34,3 +36,9 @@ export default function RootLayout({
 
 //npx prettier --write .
 //npx prisma migrate dev --name init
+
+//rm -rf node_modules package-lock.json
+// npm install
+// npx prisma generate
+// npx prisma db push
+// npm run dev

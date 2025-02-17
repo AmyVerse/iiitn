@@ -1,42 +1,12 @@
-// src/app/api/users/route.ts
-import { prisma } from "@/lib/prisma"; // Make sure this path is correct
-import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+import ScrollingCards from "./components/scrollingCards";
 
-// Fetch all users
-export async function GET() {
-  try {
-    const users = await prisma.user.findMany(); // Prisma query for users
-    return NextResponse.json(users);
-  } catch (error) {
-    console.error(error);
-    return NextResponse.error();
-  }
-}
-
-// Create a new user
-export async function POST(request: Request) {
-  const { name, email } = await request.json();
-
-  try {
-    const user = await prisma.user.create({
-      data: {
-        name,
-        email,
-      },
-    });
-    return NextResponse.json(user);
-  } catch (error) {
-    console.error(error);
-    return NextResponse.error();
-  }
-}
-
-const Page = () => {
+export default async function Home() {
   return (
-    <div className="flex h-screen items-center justify-center bg-amber-950 text-white">
-      <h1>Welcome to the Homepage</h1>
+    <div className="flex bg-gradient-to-r from-purple-600 via-pink-600 to-red-700 min-h-screen">
     </div>
-  );
-};
-
-export default Page;
+  )
+  // Server component fetching from Prisma
+  // const cards = await prisma.card.findMany();
+  // return <ScrollingCards cards={cards} />;
+}

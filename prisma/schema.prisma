@@ -14,8 +14,29 @@ datasource db {
 }
 
 // schema.prisma
-model User {
-  id    Int    @id @default(autoincrement())
-  name  String
-  email String @unique
+
+model card {
+  id      Int    @id @default(autoincrement())
+  img_url String
+  heading String
+  desc    String
+  addinfo String
+}
+
+model FacultyImages {
+  id      Int      @id @default(autoincrement())
+  url     String // Cloudflare R2 URL to the uploaded image
+  Faculty Faculty?
+}
+
+model Faculty {
+  id         Int           @id @default(autoincrement())
+  name       String
+  department String
+  email      String
+  phone      String
+  address    String
+  imageUrl   String // URL to the image stored in Vercel Blob
+  imageId    Int           @unique
+  image      FacultyImages @relation(fields: [imageId], references: [id]) // Reference image table
 }
