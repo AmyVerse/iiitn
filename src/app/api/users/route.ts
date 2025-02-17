@@ -30,13 +30,3 @@ export async function POST(request: Request) {
     return NextResponse.error();
   }
 }
-
-const Page = () => {
-  return (
-    <div className="flex h-screen items-center justify-center bg-amber-950 text-white">
-      <h1>Welcome to the Homepage</h1>
-    </div>
-  );
-};
-
-export default Page;
