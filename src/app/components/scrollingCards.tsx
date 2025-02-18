@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { useRef } from "react";
 
 interface Card {
@@ -47,13 +46,6 @@ function CardItem({ card }: CardItemProps) {
       <div className="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
         {/* Front side */}
         <div className="absolute inset-0 [backface-visibility:hidden]">
-          <Image
-            src={card.img_url}
-            alt={card.heading}
-            width={288} // Next.js requires width and height
-            height={160}
-            className="h-40 w-full rounded-t-lg object-cover"
-          />
           <div className="rounded-b-lg bg-white p-4 shadow-lg">
             <h3 className="text-lg font-bold text-red-600">{card.heading}</h3>
             <p className="mt-2 text-gray-600">{card.desc}</p>
