@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
-import "./globals.css";
 import Footer from "./components/Footer";
+import "./globals.css";
 
 const poppins = Poppins({
   variable: "--font-poppins",
