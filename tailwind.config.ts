@@ -12,6 +12,8 @@ export default {
         '1/10': '10%',
         '1/20': '5%',
         '1/5': '20%',
+        '1/4':'25%',
+        '1/2':'50%,'
       },
       colors: {
         background: "var(--background)",
