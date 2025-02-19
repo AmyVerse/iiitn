@@ -1,3 +1,6 @@
+import Card from "./components/cards";
+import Fcards from "./components/facultycard";
+import Ibutton from "./components/Invertbutton";
 import Image from "next/image";
 import { FiSearch } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -5,6 +8,8 @@ import icon from "../../public/Favicon.ico";
 
 export default async function Home() {
   return (
+    <div className="flex min-h-screen content-center items-center">
+      <Fcards img="#" name="Kamaljeet" position="Assistant professor"/>
     <div className="relative min-h-screen bg-[url('/campus.png')] bg-cover bg-center bg-no-repeat">
       {/* Sticky Top Navigation */}
       <div className="sticky top-0 flex items-center justify-between px-8 py-3">
