@@ -1,4 +1,4 @@
-import IButton from "./Invertbutton"
+import IButton from "./InvertButton"
 import React from "react";
 
 interface cardsProps {

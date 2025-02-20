@@ -1,11 +1,12 @@
-import Card from "./components/cards";
-import Fcards from "./components/facultycard";
-import Ibutton from "./components/Invertbutton";
+import Card from "./components/dataCards";
+import Description from "./components/description";
+import Fcards from "./components/facultyCard";
+import Ibutton from "./components/InvertButton";
 
 export default async function Home() {
   return (
     <div className="flex min-h-screen content-center items-center">
-      <Fcards img="#" name="Kamaljeet" position="Assistant professor"/>
+      <Description name="Kamaljeet" position="Assistant Professor"/>
     </div>
   );
 }

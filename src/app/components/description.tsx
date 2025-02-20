@@ -1,67 +1,80 @@
-import { FC } from "react";
+"use client";
+import { FC, useState } from "react";
+import Icard from "./imagecards";
 
 interface desprops {
-  img: string;
-  name: string;
-  position: string;
-  education: string;
-  experience: string;
-  teaching: string;
-  research: string;
-  publication: string;
-  supervision: string;
-  responsibility: string;
-  anyother: string;
+  link?: string;
+  email?: string;
+  number?: number;
+  name?: string;
+  position?: string;
+  education?: string;
+  experience?: string;
+  teaching?: string;
+  research?: string;
+  publication?: string;
+  supervision?: string;
+  responsibility?: string;
+  anyother?: string;
 }
 
-const Description:FC<desprops>=({
-  img,
+const Description: FC<desprops> = ({
+  link,
+  email,
+  number,
   name,
   position,
   education,
   experience,
-  teaching,
-  research,
   publication,
-  supervision,
-  responsibility,
   anyother,
-})=>{
+}) => {
+  const [selectedCell, setSelectedCell] = useState<number | null>(null);
+
+  const handleCellClick = (index: number) => {
+    setSelectedCell(index);
+  };
+
   return (
-    <div className="flex flex-1 flex-row">
-      {/* left side */}
-      <div className="flex flex-1 flex-col items-center">
-        <div className="flex flex-1 flex-col items-center">
-          <img src={img} className="block rounded-full border" />
-          <div className="font-sans text-2xl font-bold text-black">{name}</div>
-          <div className="font-mono text-xl font-semibold text-black">
-            {position}
-          </div>
+    <div className="grid h-6/10 w-7/10 grid-cols-[30%,70%] gap-0 rounded-lg border border-none bg-white shadow-md ring-offset-2">
+      <Icard link="#" number={218718112} email="jhu.edu.co.in" />
+      <div className="flex flex-col items-start bg-gray-200 p-4">
+        <div className="mb-2 text-3xl font-bold text-iip">{name}</div>
+        <div className="mb-12 text-xl text-iip">{position}</div>
+        <table className="w-full table-auto border-none">
+          <tr className="border-none">
+            {["Education", "Experience", "Research & Publications", "More"].map((text, index) => (
+              <td
+                key={index}
+                className={`box-border w-1/4 cursor-pointer  border-iip p-[0.4rem] text-center font-sans  ${
+                  selectedCell === index ? "bg-iip text-white underline decoration-white" : "bg-white text-iip transition-all hover:border-b-[0.20rem] hover:p-[0.45rem]"
+                } ${index === 3 ? "border-r-0 hover:border-b-4" : "border-r-2"} ${index === 0 ? "rounded-l-md" : ""} ${
+                  index === 3 ? "rounded-r-md" : ""
+                }`}
+                onClick={() => handleCellClick(index)}
+              >
+                {text}
+              </td>
+            ))}
+          </tr>
+        </table>
+        <div className="content wrap invisible w-full overflow-y-auto bg-white text-xs text-black">
+          {selectedCell === 0 && (
+              <div className="text-sm text-black">{education}</div>
+          )}
+          {selectedCell === 1 && (
+              <div className="text-sm text-black">{experience}</div>
+          )}
+          {selectedCell === 2 && (
+              <div className="text-sm text-black">{publication}</div>
+          )}
+          {selectedCell === 3 && (
+              <div className="text-sm text-black">{anyother}</div>
+          )}
         </div>
-        {/* logo icons here */}
-      </div>
-      {/* Right side */}
-      <div className="flex flex-1 flex-col items-start p-4">
-        <div className="mb-1 text-xl font-semibold">EDUCATION</div>
-        <div className="mb-2 text-xs">{education}</div>
-        <div className="mb-1 text-xl font-semibold">EXPERIENCE</div>
-        <div className="mb-2 text-xs">{experience}</div>
-        <div className="mb-1 text-xl font-semibold">TEACHING</div>
-        <div className="mb-2 text-xs">{teaching}</div>
-        <div className="mb-1 text-xl font-semibold">RESEARCH</div>
-        <div className="mb-2 text-xs">{research}</div>
-        <div className="mb-1 text-xl font-semibold">PUBLICATION</div>
-        <div className="mb-2 text-xs">{publication}</div>
-        <div className="mb-1 text-xl font-semibold">SUPERVISION</div>
-        <div className="mb-2 text-xs">{supervision}</div>
-        <div className="mb-1 text-xl font-semibold">RESPONSIBILTY</div>
-        <div className="mb-2 text-xs">{responsibility}</div>
-        <div className="mb-1 text-xl font-semibold">ANY OTHER</div>
-        <div className="mb-2 text-xs">{anyother}</div>
       </div>
     </div>
   );
-}
-
+};
 
 export default Description;
