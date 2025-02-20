@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Belanosima, Inter, Poppins } from "next/font/google";
 import Footer from "./components/Footer";
 import "./globals.css";
 
@@ -7,6 +7,12 @@ const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
   weight: "400",
+});
+
+const belanosima = Belanosima({
+  variable: "--font-belanosima",
+  subsets: ["latin"],
+  weight: "400"
 });
 
 const inter = Inter({

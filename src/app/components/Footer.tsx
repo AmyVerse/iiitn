@@ -100,7 +100,7 @@ export default function Footer() {
             <br /> Designed and Developed by{" "}
             <a
               href="#"
-              className="relative pb-0.5 text-[#f87e42] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-[#be6233] after:transition-all after:duration-700 hover:after:w-full"
+              className="relative pb-0.5 text-[#f87e42] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-0 after:bg-[#be6233] after:transition-all after:duration-300 hover:after:left-0 hover:after:w-full"
             >
               Students at IIITN
             </a>
