@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <div>
-      <footer className="bg-[#140b3f] px-4 font-[Poppins] text-white">
+      <footer className="bg-black px-4 font-[Poppins] text-white">
         <div className="-gap-2 mx-auto grid h-auto grid-cols-3 content-center px-5 py-10">
           <div className="flex flex-col items-start space-y-2">
             <h3 className="text-base font-bold text-gray-400 md:text-lg lg:text-xl">
@@ -94,7 +94,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-[#403185] py-4 text-center text-sm font-normal">
+        <div className="border-t border-[#403185] bg-gray-950 py-4 text-center text-sm font-normal">
           <p>
             © {new Date().getFullYear()} IIIT Nagpur.
             <br /> Designed and Developed by{" "}

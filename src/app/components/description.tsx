@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FC } from "react";
 
 interface desprops {
@@ -14,7 +15,7 @@ interface desprops {
   anyother: string;
 }
 
-const Description:FC<desprops>=({
+const Description: FC<desprops> = ({
   img,
   name,
   position,
@@ -26,13 +27,13 @@ const Description:FC<desprops>=({
   supervision,
   responsibility,
   anyother,
-})=>{
+}) => {
   return (
     <div className="flex flex-1 flex-row">
       {/* left side */}
       <div className="flex flex-1 flex-col items-center">
         <div className="flex flex-1 flex-col items-center">
-          <img src={img} className="block rounded-full border" />
+          <Image alt="" src={img} className="block rounded-full border" />
           <div className="font-sans text-2xl font-bold text-black">{name}</div>
           <div className="font-mono text-xl font-semibold text-black">
             {position}
@@ -61,7 +62,6 @@ const Description:FC<desprops>=({
       </div>
     </div>
   );
-}
-
+};
 
 export default Description;

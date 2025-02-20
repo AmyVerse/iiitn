@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Belanosima, Inter, Poppins } from "next/font/google";
-import Footer from "./components/Footer";
+import { Inter, Mukta, Poppins } from "next/font/google";
+import Footer from "./components/footer";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -9,15 +9,14 @@ const poppins = Poppins({
   weight: "400",
 });
 
-const belanosima = Belanosima({
-  variable: "--font-belanosima",
-  subsets: ["latin"],
-  weight: "400"
-});
-
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+});
+const mukta = Mukta({
+  variable: "--font-mukta",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -32,7 +31,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} ${inter.variable} antialiased`}>
+      <body
+        className={`${poppins.variable} ${inter.variable} ${mukta.variable}`}
+      >
         {children}
         <Footer />
       </body>
