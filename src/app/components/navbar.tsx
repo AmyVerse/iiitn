@@ -76,7 +76,7 @@ const AutoTypingSearchBar = () => {
       </svg>
       <input
         className="w-56 rounded-full border-white bg-[#575757] py-0.5 pl-10 pr-4 text-white placeholder-white outline outline-offset-2 outline-[#575757] transition-all duration-700 ease-in-out"
-        placeholder={`${displayText}${isDeleting ? "" : " "}`}
+        placeholder={`${displayText}${isDeleting ? "" : ""}`}
       />
     </div>
   );

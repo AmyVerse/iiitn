@@ -28,8 +28,8 @@ export default function Home() {
       <div
         className={`animation- fixed left-0 top-0 z-50 w-full transition-colors duration-500 ${
           scrolled
-            ? "h-20 bg-white shadow-lg"
-            : "h-60 bg-gradient-to-b from-black to-transparent"
+            ? "h-16 bg-white shadow-lg md:h-20"
+            : "h-40 bg-gradient-to-b from-black to-transparent md:h-60"
         }`}
       >
         <Navbar />
@@ -38,24 +38,25 @@ export default function Home() {
       {/* First Section (Fixed Full-Screen Image) */}
       <div className="fixed left-0 top-0 z-10 h-[95vh] w-full bg-[url('/campus.png')] bg-cover bg-center">
         {/* Centered Content */}
-        <div className="flex min-h-screen items-center justify-center">
+        <div className="flex min-h-screen items-center justify-center px-4">
           <div className="relative text-center">
             {/* Main Heading */}
-            <h1 className="-mb-6 font-[inter] text-[180px] font-[600] text-white">
+            <h1 className="-mb-2 font-[Poppins] text-[15vw] font-[900] text-white sm:text-[15vw] md:-mb-6 md:text-[12vw] lg:text-[180px]">
               IIITN
             </h1>
 
             {/* Subtext - Centered Below */}
-            <div className="mb-28 space-y-1">
-              <span className="font-[poppins] text-[24px] font-semibold text-white">
+            <div className="mb-12 space-y-1 md:mb-28">
+              <span className="block font-[poppins] text-[3vw] font-semibold text-white sm:text-[4vw] md:text-[3vw] lg:text-[24px]">
                 Indian Institute of Information Technology, Nagpur
               </span>
-              <br></br>
-              <span className="font-[mukta] text-[24px] text-white">
+              <span className="block font-[mukta] text-[3vw] text-white sm:text-[4vw] md:text-[3vw] lg:text-[24px]">
                 भारतीय सूचना प्रौद्योगिकी संस्थान, नागपुर
               </span>
             </div>
-            <div className="sd:grid-cols-1 mb-16 flex grid-cols-2 justify-center gap-28 space-x-8">
+
+            {/* Buttons */}
+            <div className="grid grid-cols-2 gap-4 px-4 sm:grid-cols-1 lg:flex lg:justify-center lg:gap-28 lg:space-x-0 lg:px-0">
               <IButton content="EXPLORE" link="" />
               <IButton content="ADMISSION" link="" />
               <IButton content="CONTACT US" link="" />
@@ -66,11 +67,11 @@ export default function Home() {
       </div>
 
       {/* Second Section (Scrolls Over the First) */}
-      <div className="relative z-20 mt-[85vh] bg-[url('/paper.png')] bg-center bg-no-repeat">
-        <div className="z-20 flex w-full items-center justify-center pt-44 font-[Inter] text-xl font-medium text-black">
+      <div className="relative z-40 mt-[95vh] flex flex-col items-center justify-center bg-[url('/paper.png')] bg-center bg-no-repeat">
+        <div className="flex items-center px-4 text-base font-medium text-black md:text-xl">
           Unveil IIITN
           <svg
-            className="ml-2 mt-1 h-6 w-6 animate-bounce"
+            className="ml-2 mt-1 h-4 w-4 animate-bounce md:h-6 md:w-6"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -85,11 +86,14 @@ export default function Home() {
           </svg>
         </div>
       </div>
+
+      {/* Repeated Background Sections */}
+      <div className="relative z-20 h-[200vh] bg-[url('/blockbg.png')] bg-center bg-repeat"></div>
+
       {/* Footer - Attached to the Sliding Part */}
-      <div className="relative z-40 h-36 bg-gradient-to-t from-black via-black via-[90%] to-transparent"></div>
-      <div className="relative z-20">
+      <footer className="relative z-10">
         <Footer />
-      </div>
+      </footer>
     </div>
   );
 }
