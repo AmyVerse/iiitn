@@ -13,22 +13,38 @@ interface LowerItem {
 }
 
 const menuItems: MenuItem[] = [
-  { label: 'ABOUT US', subMenus: ['Dashboard', 'Profile'] },
-  { label: 'ACADEMICS', subMenus: ['Our Story', 'Team'] },
-  { label: 'ADMISSION', subMenus: ['Research', 'Development'] },
-  { label: 'DEPARTMENT', subMenus: ['Email', 'Location'] },
-  { label: 'ALUMNI', subMenus: ['Email', 'Location'] },
-  { label: 'PLACEMENT', subMenus: ['Email', 'Location'] },
+  { label: 'ACADEMICS', subMenus: ['Calendar', 'Courses', 'Curriculum', 'Library', 'Research'] },
+  { label: 'ADMISSION', subMenus: ['Fees', 'Programs', 'Aids', 'Connect', 'How To Apply'] },
+  {
+    label: 'DEPARTMENT',
+    subMenus: [
+      'About',
+      'Basic Science',
+      'Computer Science & Engineering',
+      'Electronic & Communication Engineering',
+      'Doctoral Programme',
+    ],
+  },
+  {
+    label: 'CAMPUS LIFE',
+    subMenus: ['Hostel', 'Mess', 'Clubs & Events', 'Culture', 'Blogs', 'Recreation'],
+  },
+  { label: 'ALUMNI', subMenus: ['Members', 'Login', 'Donate'] },
+  {
+    label: 'PLACEMENTS',
+    subMenus: ['Why Recruit?', 'T&P Cell', 'Interships', 'Statistics', 'For Companies'],
+  },
 ]
 
 const lowerItems: LowerItem[] = [
-  { label: 'News' },
+  { label: 'Home' },
   { label: 'Events' },
   { label: 'Information' },
   { label: 'Career' },
   { label: 'Parents' },
   { label: 'Visit' },
   { label: 'NIRF Ranking' },
+  { label: 'About Us' },
 ]
 
 export default function Sidebar() {
@@ -112,7 +128,7 @@ export default function Sidebar() {
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className='overflow-hidden pl-6'
+                        className='mb-5 mt-1 overflow-hidden pl-6'
                       >
                         {item.subMenus?.map((subMenu) => (
                           <motion.li
@@ -121,7 +137,7 @@ export default function Sidebar() {
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: -10, opacity: 0 }}
                             transition={{ delay: 0.05 }}
-                            className='py-2 text-xs text-white/80 hover:text-white sm:text-sm'
+                            className='py-2 text-sm text-white/80 hover:text-white sm:text-sm'
                           >
                             {subMenu}
                           </motion.li>
@@ -133,7 +149,7 @@ export default function Sidebar() {
               ))}
             </AnimatePresence>
           </ul>
-          <ul className='mt-10'>
+          <ul className='mt-11'>
             <AnimatePresence>
               {lowerItems.map((item, index) => (
                 <motion.li
@@ -147,7 +163,7 @@ export default function Sidebar() {
                     onClick={() => toggleMenu(item.label)}
                     whileHover={{ x: 6 }}
                     transition={{ duration: 0.03, ease: 'easeInOut' }}
-                    className='group flex w-full items-center justify-between px-3 py-1 text-left capitalize text-white/70 transition-all duration-100 hover:text-white'
+                    className='group flex w-full items-center justify-between px-3 py-1.5 text-left capitalize text-white/70 transition-all duration-100 hover:text-white'
                   >
                     <span className='text-sm font-thin sm:text-base'>{item.label}</span>
                   </motion.button>
@@ -158,6 +174,12 @@ export default function Sidebar() {
           <IButton1
             onClick={() => setIsOpen(false)}
             className='mt-9 w-full border-white/10 font-normal text-white'
+            content='Login'
+            className1='bg-transparent'
+          />
+          <IButton1
+            onClick={() => setIsOpen(false)}
+            className='mt-1 w-full border-white/10 font-normal text-white'
             content='CLOSE MENU'
             className1='bg-transparent'
           />

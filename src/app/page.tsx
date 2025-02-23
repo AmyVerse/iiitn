@@ -51,10 +51,10 @@ export default function Home() {
 
         {/* Buttons with Negative Z (Still Clickable) */}
         <div className='relative mt-20 grid grid-cols-2 gap-4 px-4 sm:grid-cols-1 lg:flex lg:justify-center lg:gap-28 lg:space-x-0 lg:px-0'>
-          <IButton1 content='ABOUT US' onClick={() => window.open('/about', '_self')} />
+          <IButton1 content='ABOUT US' onClick={() => window.open('#about', '_self')} />
           <IButton1 content='ACADEMICS' onClick={() => window.open('/about', '_self')} />
           <IButton1 content='ADMISSION' onClick={() => window.open('/about', '_self')} />
-          <IButton1 content='PLACEMENT' onClick={() => window.open('/about', '_self')} />
+          <IButton1 content='UPDATES' onClick={() => window.open('/about', '_self')} />
         </div>
       </section>
 
@@ -81,8 +81,11 @@ export default function Home() {
 
       {/* New Content Section */}
       <section className="relative flex aspect-[1708/517] flex-col bg-[url('/blockbg.png')] bg-center">
-        <div className='flex w-full flex-col gap-2 px-8 py-24 sm:gap-5 sm:px-60'>
-          <div className='flex pb-3 font-[makro] text-4xl font-bold text-black sm:text-5xl'>
+        <div className='flex w-full flex-col gap-2 px-8 pb-24 sm:gap-5 sm:px-60'>
+          <div
+            id='about'
+            className='flex pb-3 pt-24 font-[makro] text-4xl font-bold text-black sm:text-5xl'
+          >
             We are...
           </div>
           <div className='flex pb-5 font-[poppins] text-lg font-normal text-black sm:text-xl'>

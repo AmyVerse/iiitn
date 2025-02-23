@@ -1,6 +1,34 @@
+'use client'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { useState } from 'react'
+
+const socialLinks = [
+  {
+    id: 'facebook',
+    href: 'https://facebook.com',
+    src: '/sm/fb.svg',
+  },
+  {
+    id: 'twitter',
+    href: 'https://x.com/IIITN_OFFICIAL',
+    src: '/sm/x.svg',
+  },
+  {
+    id: 'instagram',
+    href: 'https://instagram.com/iiit_nagpur',
+    src: '/sm/ig.svg',
+  },
+  {
+    id: 'linkedin',
+    href: 'https://www.linkedin.com/in/iiitnofficial/',
+    src: '/sm/ld.svg',
+  },
+]
 
 export function Footer() {
+  const [hovered, setHovered] = useState<string | null>(null)
+
   return (
     <div>
       <footer className='bg-[#0d0827] font-[Poppins] text-white'>
@@ -32,7 +60,7 @@ export function Footer() {
                     <path d='M22 16.92V21a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 1 4.18 2 2 0 0 1 3 2h4.09a2 2 0 0 1 2 1.72 13 13 0 0 0 .57 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 13 13 0 0 0 2.81.57 2 2 0 0 1 1.72 2z'></path>
                   </svg>
                   <div className='inline-block pl-3 text-sm transition-all hover:pl-4 sm:text-sm'>
-                    <a href='#' className='hover:text-gray-400'>
+                    <a href='tel:+919405215010' className='hover:text-gray-400'>
                       9405215010
                     </a>
                   </div>
@@ -54,7 +82,7 @@ export function Footer() {
                     <polyline points='22,6 12,13 2,6'></polyline>
                   </svg>
                   <div className='inline-block pl-3 text-sm transition-all hover:pl-4 sm:text-sm'>
-                    <a href='#' className='hover:text-gray-400'>
+                    <a href='mailto:registrar@iiitn.ac.in' className='hover:text-gray-400'>
                       registrar@iiitn.ac.in
                     </a>
                   </div>
@@ -81,6 +109,48 @@ export function Footer() {
                     </a>
                   </div>
                 </li>
+                <div className='mb-2 mt-4 flex items-center justify-center gap-6 border-t-[1px] border-iip pt-4 sm:justify-start sm:pt-6'>
+                  {socialLinks.map((link) => (
+                    <a
+                      key={link.id}
+                      href={link.href}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='relative h-8 w-7 transition-all duration-300'
+                      onMouseEnter={() => setHovered(link.id)}
+                      onMouseLeave={() => setHovered(null)}
+                    >
+                      {/* Current Icon - Moves Down */}
+                      <motion.img
+                        src={link.src}
+                        alt={link.id}
+                        width={20}
+                        height={20}
+                        className='absolute h-8 w-7 grayscale'
+                        initial={{ y: 0, opacity: 1 }}
+                        animate={hovered === link.id ? { y: 20, opacity: 0 } : { y: 0, opacity: 1 }}
+                        transition={{
+                          y: { duration: 0.3 },
+                          opacity: { duration: 0.3 },
+                        }}
+                      />
+
+                      {/* New Icon - Drops from Top */}
+                      <motion.img
+                        src={link.src} // This should be the alternative icon
+                        alt={`${link.id}-hover`}
+                        width={20}
+                        height={20}
+                        className='absolute h-8 w-7 grayscale-0'
+                        initial={{ y: -20, opacity: 0 }}
+                        animate={
+                          hovered === link.id ? { y: 0, opacity: 1 } : { y: -20, opacity: 0 }
+                        }
+                        transition={{ y: { duration: 0.3 }, opacity: { duration: 0.3 } }}
+                      />
+                    </a>
+                  ))}
+                </div>
               </ul>
             </ul>
           </div>
