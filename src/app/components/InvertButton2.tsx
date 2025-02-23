@@ -1,10 +1,10 @@
 // IButton.tsx
-import React from "react";
+import React from 'react'
 
 interface IbuttonProps {
-  content: string;
-  link?: string;
-  className?: string;
+  content: string
+  link?: string
+  className?: string
 }
 
 const Ibutton: React.FC<IbuttonProps> = ({ content, link, className }) => {
@@ -15,7 +15,7 @@ const Ibutton: React.FC<IbuttonProps> = ({ content, link, className }) => {
     >
       {content}
     </a>
-  );
-};
+  )
+}
 
-export default Ibutton;
+export default Ibutton

@@ -1,110 +1,185 @@
-"use client"; // Required for Next.js 13+ app directory
-import { motion } from "framer-motion";
-import { X } from "lucide-react"; // Icons
-import { useState } from "react";
+'use client'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useState } from 'react'
+import { IButton1 } from './invertButton'
+
+interface MenuItem {
+  label: string
+  subMenus?: string[]
+}
+
+interface LowerItem {
+  label: string
+}
+
+const menuItems: MenuItem[] = [
+  { label: 'ABOUT US', subMenus: ['Dashboard', 'Profile'] },
+  { label: 'ACADEMICS', subMenus: ['Our Story', 'Team'] },
+  { label: 'ADMISSION', subMenus: ['Research', 'Development'] },
+  { label: 'DEPARTMENT', subMenus: ['Email', 'Location'] },
+  { label: 'ALUMNI', subMenus: ['Email', 'Location'] },
+  { label: 'PLACEMENT', subMenus: ['Email', 'Location'] },
+]
+
+const lowerItems: LowerItem[] = [
+  { label: 'News' },
+  { label: 'Events' },
+  { label: 'Information' },
+  { label: 'Career' },
+  { label: 'Parents' },
+  { label: 'Visit' },
+  { label: 'NIRF Ranking' },
+]
 
 export default function Sidebar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [openMenus, setOpenMenus] = useState({
-    home: false,
-    about: false,
-    services: false,
-    contact: false,
-  });
+  const [isOpen, setIsOpen] = useState(false)
+  const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({})
 
-  const toggleMenu = (menu: keyof typeof openMenus) => {
-    setOpenMenus((prev) => ({
-      ...prev,
-      [menu]: !prev[menu],
-    }));
-  };
+  const toggleMenu = (menu: string) => {
+    setOpenMenus((prev) => ({ ...prev, [menu]: !prev[menu] }))
+  }
 
   return (
-    <div className="relative">
+    <div className='relative'>
       {/* Overlay */}
-      {isOpen && (
-        <motion.div
-          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={() => setIsOpen(false)}
-          style={{ cursor: `url('/cursor.svg'), pointer` }}
-        />
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className='cursor-cross fixed inset-0 z-40 bg-black/50 backdrop-blur-sm'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setIsOpen(false)}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Sidebar */}
       <motion.div
-        className="fixed right-0 top-0 z-50 h-screen w-[36vh] bg-[#472082] p-5 text-white shadow-lg sm:w-[43vh]"
-        initial={{ x: "100%" }}
-        animate={{ x: isOpen ? "5%" : "100%" }}
-        transition={{ type: "spring", stiffness: 120, damping: 15 }}
+        className='fixed right-0 top-0 z-50 h-screen w-[320px] overflow-y-scroll bg-[#472082] text-white shadow-lg sm:w-[480px] sm:p-5'
+        initial={{ x: '100%' }}
+        animate={{ x: isOpen ? '2%' : '100%' }}
+        exit={{ x: '100%' }}
+        transition={{
+          type: 'spring',
+          stiffness: 260, // Increased stiffness for a snappier effect
+          damping: 24, // Adjusted damping for a bouncier feel
+        }}
       >
-        <button
-          onClick={() => setIsOpen(false)}
-          className="absolute right-12 top-10 z-50 flex flex-col gap-1 p-2 text-white"
-        >
-          <div className="relative h-8 w-8">
-            <div className="absolute left-0 top-0 h-0.5 w-full rotate-45 bg-white"></div>
-            <div className="absolute left-0 top-0 h-0.5 w-full -rotate-45 bg-white"></div>
-          </div>
+        {/* Close Button */}
+        <button onClick={() => setIsOpen(false)} className='absolute right-10 top-6 p-2 text-white'>
+          <motion.div
+            className='relative h-6 w-6'
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <span className='absolute left-0 top-[11px] h-[2px] w-full rotate-45 bg-white' />
+            <span className='absolute left-0 top-[11px] h-[2px] w-full -rotate-45 bg-white' />
+          </motion.div>
         </button>
-        <nav className="mt-24 px-10 font-[Poppins] text-xl font-normal">
-          <ul className="">
-            {(
-              ["home", "about", "services", "contact"] as Array<
-                keyof typeof openMenus
-              >
-            ).map((item, index, array) => (
-              <li
-                key={item}
-                className={`border-t-2 ${
-                  index === array.length - 1 ? "border-b-2" : ""
-                } border-[#8440e4] py-2 transition-all duration-200 hover:bg-[#8440e4] hover:px-5`}
-              >
-                <button
-                  onClick={() => toggleMenu(item)}
-                  className="w-full text-left capitalize"
+
+        {/* Navigation */}
+        <nav className='mt-24 px-8'>
+          <ul className=''>
+            <AnimatePresence>
+              {menuItems.map((item, index) => (
+                <motion.li
+                  key={item.label}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ delay: index * 0.05 }}
+                  className='border-b-2 border-[#8440e4]/30'
                 >
-                  {item}
-                </button>
-                {openMenus[item] && (
-                  <motion.ul
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="mt-2 pl-5"
+                  <motion.button
+                    onClick={() => toggleMenu(item.label)}
+                    whileHover={{ x: 6 }}
+                    transition={{ duration: 0.03, ease: 'easeInOut' }}
+                    className='group flex w-full items-center justify-between px-3 py-3 text-left capitalize transition-all duration-100 hover:bg-white/10'
                   >
-                    <li className="py-1">Submenu 1</li>
-                    <li className="py-1">Submenu 2</li>
-                  </motion.ul>
-                )}
-              </li>
-            ))}
+                    <span className='font-medium sm:text-lg'>{item.label}</span>
+                    <motion.span className='border-[1px] px-1.5'>
+                      {openMenus[item.label] ? '-' : '+'}
+                    </motion.span>
+                  </motion.button>
+
+                  {/* Submenu */}
+                  <AnimatePresence>
+                    {openMenus[item.label] && (
+                      <motion.ul
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className='overflow-hidden pl-6'
+                      >
+                        {item.subMenus?.map((subMenu) => (
+                          <motion.li
+                            key={subMenu}
+                            initial={{ x: -10, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            exit={{ x: -10, opacity: 0 }}
+                            transition={{ delay: 0.05 }}
+                            className='py-2 text-xs text-white/80 hover:text-white sm:text-sm'
+                          >
+                            {subMenu}
+                          </motion.li>
+                        ))}
+                      </motion.ul>
+                    )}
+                  </AnimatePresence>
+                </motion.li>
+              ))}
+            </AnimatePresence>
           </ul>
+          <ul className='mt-10'>
+            <AnimatePresence>
+              {lowerItems.map((item, index) => (
+                <motion.li
+                  key={item.label}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ delay: index * 0.05 }}
+                >
+                  <motion.button
+                    onClick={() => toggleMenu(item.label)}
+                    whileHover={{ x: 6 }}
+                    transition={{ duration: 0.03, ease: 'easeInOut' }}
+                    className='group flex w-full items-center justify-between px-3 py-1 text-left capitalize text-white/70 transition-all duration-100 hover:text-white'
+                  >
+                    <span className='text-sm font-thin sm:text-base'>{item.label}</span>
+                  </motion.button>
+                </motion.li>
+              ))}
+            </AnimatePresence>
+          </ul>
+          <IButton1
+            onClick={() => setIsOpen(false)}
+            className='mt-9 w-full border-white/10 font-normal text-white'
+            content='CLOSE MENU'
+            className1='bg-transparent'
+          />
         </nav>
       </motion.div>
 
-      {/* Hamburger Button */}
+      {/* Open Sidebar Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="z-50 flex flex-col gap-1 p-2 text-white"
-        whileTap={{ scale: 0.9 }}
-        whileHover={{ scale: 1.1 }}
+        className='z-50 flex flex-col gap-[6px] p-2'
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
-        {isOpen ? (
-          <X size={30} />
-        ) : (
-          <div className="flex flex-col gap-1.5">
-            <div className="h-1 w-8 rounded-full bg-white"></div>{" "}
-            {/* Small Left */}
-            <div className="h-1 w-5 self-end rounded-full bg-white"></div>{" "}
-            {/* Full Width */}
-            <div className="h-1 w-8 rounded-full bg-white"></div>{" "}
-            {/* Half Right */}
-          </div>
-        )}
+        <motion.div
+          className='flex flex-col gap-[6px]'
+          animate={isOpen ? { rotate: 180 } : { rotate: 0 }}
+        >
+          <span className='h-[2px] rounded-sm sm:h-[3px] sm:w-6 w-4 bg-white' />
+          <span className='h-[2px] rounded-sm sm:h-[3px] sm:w-8 w-6 bg-white' />
+          <span className='h-[2px] rounded-sm sm:h-[3px] sm:w-6 w-4 self-end bg-white' />
+        </motion.div>
       </motion.button>
     </div>
-  );
+  )
 }

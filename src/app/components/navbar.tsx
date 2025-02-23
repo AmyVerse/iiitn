@@ -1,139 +1,193 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import icon from "../../../public/logo.svg";
-import Sidebar from "./sidebar";
+'use client'
 
-const suggestions = [
-  "Faculty",
-  "Holidays",
-  "Events",
-  "Policy",
-  "Placement",
-  "NIRF Detail",
-];
+import { AnimatePresence, motion } from 'framer-motion'
+import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import icon from '../../../public/logo.svg'
+import Sidebar from './sidebar'
 
-const AutoTypingSearchBar = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [displayText, setDisplayText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
+const suggestions = ['Faculty', 'Holidays', 'Events', 'Policy', 'Placement', 'NIRF Detail']
+
+export default function Navbar() {
+  //automated suggestion logic
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [displayText, setDisplayText] = useState('')
+  const [isDeleting, setIsDeleting] = useState(false)
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
+    let timeout: NodeJS.Timeout
 
     if (isDeleting) {
       if (displayText.length === 0) {
-        setIsDeleting(false);
-        setCurrentIndex((prev) => (prev + 1) % suggestions.length);
-        return;
+        setIsDeleting(false)
+        setCurrentIndex((prev) => (prev + 1) % suggestions.length)
+      } else {
+        timeout = setTimeout(() => {
+          setDisplayText(displayText.slice(0, -1))
+        }, 50) // Backspace speed
       }
-
-      timeout = setTimeout(() => {
-        setDisplayText(displayText.slice(0, -1));
-      }, 50); // Backspace speed
     } else {
-      const fullText = suggestions[currentIndex];
+      const fullText = suggestions[currentIndex]
       if (displayText === fullText) {
         timeout = setTimeout(() => {
-          setIsDeleting(true);
-        }, 1000); // Wait before deleting
-        return;
+          setIsDeleting(true)
+        }, 1000) // Wait before deleting
+      } else {
+        timeout = setTimeout(() => {
+          setDisplayText(fullText.slice(0, displayText.length + 1))
+        }, 100) // Typing speed
       }
-
-      timeout = setTimeout(() => {
-        setDisplayText(fullText.slice(0, displayText.length + 1));
-      }, 100); // Typing speed
     }
 
-    return () => clearTimeout(timeout);
-  }, [displayText, currentIndex, isDeleting]);
+    return () => clearTimeout(timeout)
+  }, [displayText, currentIndex, isDeleting])
+
+  //scroll logic
+  const pathname = usePathname()
+  const isHomePage = pathname === '/'
+
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+
+  useEffect(() => {
+    if (!isHomePage) return // Don't track scroll on other pages
+
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [isHomePage])
 
   return (
-    <div className="relative flex items-center">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 190 167"
-        width="28"
-        height="23"
-        className="absolute bottom-1 left-1 animate-pulse"
-      >
-        <path
-          d="M133.5 86.5C132.154 94.049 129.488 101.216 125.5 108C134.624 118.125 144.124 127.958 154 137.5C156.167 147.333 152.333 151.167 142.5 149C132.958 139.124 123.125 129.624 113 120.5C94.0251 131.291 75.1918 131.124 56.5 120C42.0275 108.775 35.3608 93.9412 36.5 75.5C36.3367 73.1432 36.5034 70.8098 37 68.5C46.267 41.6121 65.1003 29.4454 93.5 32C121.598 39.2722 134.931 57.4388 133.5 86.5Z"
-          fill="#FBFBFB"
-          fillRule="evenodd"
-        />
-        <path
-          d="M78.5 39.5C109.984 39.4831 125.484 55.1497 125 86.5C118.747 110.41 103.247 121.577 78.5 120C60.009 116.176 48.8423 105.009 45 86.5C43.6232 61.733 54.7899 46.0663 78.5 39.5Z"
-          fill="#585859"
-          fillRule="evenodd"
-        />
-        <path
-          d="M74.5 49.5C79.0119 49.8689 80.5119 52.2022 79 56.5C67.5155 61.3255 61.5155 69.9921 61 82.5C58.6667 85.1667 56.3333 85.1667 54 82.5C52.8836 66.4695 59.717 55.4695 74.5 49.5Z"
-          fill="#F8F8F8"
-          fillRule="evenodd"
-        />
-      </svg>
-      <input
-        className="w-56 rounded-full border-white bg-[#575757] py-0.5 pl-10 pr-4 text-white placeholder-white outline outline-offset-2 outline-[#575757] transition-all duration-700 ease-in-out"
-        placeholder={`${displayText}${isDeleting ? "" : ""}`}
-      />
-    </div>
-  );
-};
-
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <div className="relative w-full">
-      <div className="h-1 w-full bg-iio"></div>
-      <div className="w-full">
+    <div className='relative z-30 w-full'>
+      <div className='h-0.5 w-full bg-iio'></div>
+      <div className='w-full'>
         <div
-          style={{ cursor: "url('/cursor_cross.svg') 16 16, auto" }}
-          className="sticky top-0 flex items-center justify-between px-8 py-3"
+          className={`sticky top-0 flex items-center justify-between px-5 py-3 transition-all duration-500 sm:px-8 ${
+            isHomePage
+              ? isScrolled
+                ? 'bg-black/40 text-white shadow-md'
+                : 'bg-gradient-to-b from-black via-black to-transparent'
+              : 'bg-black/40 text-white shadow-md'
+          }`}
         >
-          <Link target="blank" href="www.iiitn.ac.in">
-            <Image src={icon} alt="IIITN Logo" width={60} />
-          </Link>
-          <div className="flex items-center gap-8 text-white">
-            <AutoTypingSearchBar />
+          <div className='flex items-center'>
+            <Link target='_blank' href='https://www.iiitn.ac.in'>
+              <Image
+                className='hidden sm:block'
+                src={icon}
+                alt='IIITN Logo'
+                width={60}
+                height={30}
+              />{' '}
+              {/* laptop */}
+              <Image
+                className='block sm:hidden'
+                src={icon}
+                alt='IIITN Logo'
+                width={40}
+                height={50}
+              />{' '}
+              {/* phone */}
+            </Link>
+          </div>
+          <div className='flex items-center gap-6 sm:gap-8'>
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              className='transition-all duration-100 hover:scale-110'
+            >
+              <Image
+                className='hidden sm:block'
+                src='/search.svg'
+                alt='Search Icon'
+                width={45}
+                height={20}
+              />{' '}
+              {/* laptop */}
+              <Image
+                className='block sm:hidden'
+                src='/search.svg'
+                alt='Search Icon'
+                width={35}
+                height={20}
+              />{' '}
+              {/* phone */}
+            </button>
             <Sidebar />
           </div>
         </div>
       </div>
 
-      {/* Sidebar */}
-      <div
-        className={`fixed right-0 top-0 z-40 h-screen w-64 bg-black/95 transition-transform duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <button
-          onClick={() => setIsOpen(false)}
-          className={`absolute right-8 top-8 z-50 flex h-12 w-12 flex-col items-center justify-center transition-opacity duration-300 ${
-            isOpen ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <span className="absolute h-[2px] w-6 rotate-45 bg-white transition-all duration-300" />
-          <span className="absolute h-[2px] w-6 -rotate-45 bg-white transition-all duration-300" />
-        </button>
+      <AnimatePresence>
+        {isSearchOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className='fixed inset-0 z-50 flex flex-col backdrop-blur-lg'
+          >
+            <motion.div className='flex flex-grow flex-row items-center justify-between px-12 py-8'>
+              {/* Left Side */}
+              <motion.div className='flex-grow text-white'></motion.div>
 
-        <div className="mt-60 flex flex-col gap-4 p-8">
-          <a href="#" className="text-lg text-white hover:text-iio">
-            Home
-          </a>
-          <a href="#" className="text-lg text-white hover:text-iio">
-            About
-          </a>
-          <a href="#" className="text-lg text-white hover:text-iio">
-            Services
-          </a>
-          <a href="#" className="text-lg text-white hover:text-iio">
-            Contact
-          </a>
-        </div>
-      </div>
+              {/* Cross Button (Right Side) */}
+              <motion.button
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ delay: 0.2 }}
+                className='text-3xl text-white transition-transform hover:scale-110'
+                onClick={() => setIsSearchOpen(false)}
+              >
+                ✕
+              </motion.button>
+            </motion.div>
+
+            <motion.div //card
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ delay: 0.1 }}
+              className='mx-7 flex-grow flex-col items-center rounded-lg bg-white p-20 sm:mx-28 md:mx-64'
+            >
+              <motion.input
+                initial={{ width: '0%' }}
+                animate={{ width: '100%' }}
+                exit={{ width: '0%' }}
+                transition={{ duration: 0.3 }}
+                type='text'
+                placeholder={`${displayText}${isDeleting ? '' : ''}`}
+                className='mb-16 mt-4 rounded-b-sm border-b-2 border-black px-2 font-[Poppins] text-5xl font-medium text-black placeholder-black outline-none focus:rounded-b-lg focus:border-b-2 focus:border-iio'
+                autoFocus
+              />
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ delay: 0.2 }}
+                className='flex w-full flex-col content-start gap-2'
+              >
+                <motion.div className='mb-3 w-fit px-2 font-[Poppins] text-sm text-black'>
+                  Helpful Links
+                </motion.div>
+                <motion.button className='relative mx-2 w-fit font-[Inter] text-base font-[600] text-iio before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-iio before:opacity-0 before:transition-all before:duration-300 after:absolute after:bottom-0 after:right-0 after:h-0.5 after:w-full after:bg-iio after:opacity-0 after:transition-all after:duration-300 hover:before:w-full hover:before:opacity-0 hover:after:w-0 hover:after:opacity-100'>
+                  Banner via IIITN
+                </motion.button>
+                <motion.button className='relative mx-2 w-fit font-[Inter] text-base font-[600] text-iio before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-iio before:opacity-0 before:transition-all before:duration-300 after:absolute after:bottom-0 after:right-0 after:h-0.5 after:w-full after:bg-iio after:opacity-0 after:transition-all after:duration-300 hover:before:w-full hover:before:opacity-0 hover:after:w-0 hover:after:opacity-100'>
+                  Office of the Registrar
+                </motion.button>
+              </motion.div>
+            </motion.div>
+            <motion.div className='mt-56 flex-grow px-4 py-2'></motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
-  );
+  )
 }

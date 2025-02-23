@@ -5,9 +5,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --font-poppins: "Poppins", sans-serif;
-  --font-inter: "Inter", sans-serif;
-  --font-mukta: "Mukta", sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-mukta: 'Mukta', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -78,4 +78,10 @@ html {
 input::placeholder {
   transition: all 0.1s ease-out;
   animation: fadeInOut 0.7s ease-in-out;
+}
+
+@layer utilities {
+  .cursor-cross {
+    cursor: url('../../public/cursor.svg'), auto;
+  }
 }
