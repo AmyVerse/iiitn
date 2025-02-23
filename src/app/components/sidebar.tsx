@@ -175,9 +175,9 @@ export default function Sidebar() {
           className='flex flex-col gap-[6px]'
           animate={isOpen ? { rotate: 180 } : { rotate: 0 }}
         >
-          <span className='h-[2px] rounded-sm sm:h-[3px] sm:w-6 w-4 bg-white' />
-          <span className='h-[2px] rounded-sm sm:h-[3px] sm:w-8 w-6 bg-white' />
-          <span className='h-[2px] rounded-sm sm:h-[3px] sm:w-6 w-4 self-end bg-white' />
+          <span className='h-[2px] w-4 rounded-sm bg-white sm:h-[3px] sm:w-6' />
+          <span className='h-[2px] w-6 rounded-sm bg-white sm:h-[3px] sm:w-8' />
+          <span className='h-[2px] w-4 self-end rounded-sm bg-white sm:h-[3px] sm:w-6' />
         </motion.div>
       </motion.button>
     </div>

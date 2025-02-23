@@ -1,12 +1,15 @@
 'use client'
 
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import AppleGrid from './components/imageCarousel'
+import { CardSliderOn, CardSliderUP } from './components/eventsCard'
+import GalleryCarousel from './components/galleryCarousel'
+import GallerySphere from './components/gallerySphere'
 import { IButton1, IButton2 } from './components/invertButton'
 import Navbar from './components/navbar'
+import AppleGrid from './components/spotlightCarousel'
 
 export default function Home() {
+  const [showOngoing, setShowOngoing] = useState(true) // State to track the selected tab
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -56,14 +59,14 @@ export default function Home() {
       </section>
 
       {/* Scrolling Strip Section */}
-      <div className="flex items-center justify-center bg-[url('/paper.png')] bg-no-repeat max-sm:bg-contain max-sm:bg-center sm:h-[90px]">
+      <div className="mt-10 flex aspect-[1708/134] items-center justify-center bg-[url('/paper.png')] bg-no-repeat max-sm:bg-contain max-sm:bg-center sm:-mt-4">
         <section className='mt-2 flex text-base text-black sm:mt-8 sm:items-baseline sm:text-xl sm:font-medium'>
-          Unveil IIITN
+          Explore IIITN
           <svg
-            className='ml-2 mt-[5px] h-4 w-4 animate-bounce sm:mt-[4px] sm:h-6 sm:w-6'
+            className='ml-2 mt-[5px] h-4 w-4 animate-bounce sm:h-6 sm:w-6'
             fill='none'
             stroke='currentColor'
-            viewBox='0 0 24 24'
+            viewBox='0 -7 24 24'
             xmlns='http://www.w3.org/2000/svg'
           >
             <path
@@ -77,18 +80,20 @@ export default function Home() {
       </div>
 
       {/* New Content Section */}
-      <section className="relative flex h-[2500px] flex-col bg-[url('/blockbg.png')] bg-center">
+      <section className="relative flex aspect-[1708/517] flex-col bg-[url('/blockbg.png')] bg-center">
         <div className='flex w-full flex-col gap-2 px-8 py-24 sm:gap-5 sm:px-60'>
           <div className='flex pb-3 font-[makro] text-4xl font-bold text-black sm:text-5xl'>
-            What are we?
+            We are...
           </div>
           <div className='flex pb-5 font-[poppins] text-lg font-normal text-black sm:text-xl'>
-            We are here to empower students with the knowledge and skills they need to succeed in
-            the world of technology. With a strong focus on academic excellence, innovation, and
-            industry collaboration, we create an environment where learning meets real-world impact.
-            Established in 2016 under the Public-Private Partnership (PPP) model, we take pride in
-            being an Institute of National Importance, dedicated to shaping the future of technology
-            and education.
+            IIITN, established in 2016 under the Public-Private Partnership (PPP) model, we take
+            pride in being an Institute of National Importance, dedicated to shaping the future of
+            technology and education.
+            <br />
+            <br /> We are here to empower students with the knowledge and skills they need to
+            succeed in the world of technology. With a strong focus on academic excellence,
+            innovation, and industry collaboration, we create an environment where learning meets
+            real-world impact.
           </div>
           <div>
             <IButton2 content='Learn More' onClick={() => window.open('/about', '_self')} />
@@ -106,60 +111,51 @@ export default function Home() {
           <div className='flex pb-3 font-[makro] text-4xl font-bold text-black sm:text-5xl'>
             Events
           </div>
-          <div className='flex justify-around pb-5'>
-            <Link
-              href={'/'}
-              className='group relative flex h-8 w-full max-w-[190px] items-center justify-center overflow-hidden rounded-xl border-[2px] border-iio bg-transparent text-iio transition-all duration-200 hover:bg-transparent sm:h-9 sm:max-w-[45%] sm:rounded-2xl sm:px-2 sm:py-2'
+          <div className='flex justify-around gap-4 pb-5'>
+            <button
+              onClick={() => setShowOngoing(true)}
+              className={`group relative flex h-8 w-[50%] max-w-[190px] items-center justify-center overflow-hidden rounded-xl border-[2px] border-iio text-iio transition-all duration-200 sm:h-9 sm:max-w-[45%] sm:rounded-2xl sm:px-2 sm:py-2 ${
+                showOngoing ? 'bg-iio text-white' : ''
+              }`}
             >
-              {/* Fluid fill effect */}
-              <span className='absolute bottom-0 left-0 h-0 w-full bg-iio transition-all duration-200 ease-out group-hover:h-full' />
-
               {/* Button Text with Animated Arrow */}
-              <span className='relative flex content-baseline items-center text-center font-[poppins] text-[16px] font-black group-hover:text-white sm:text-[18px]'>
-                Upcoming
-              </span>
-            </Link>
-            <Link
-              href={'/'}
-              className='group relative flex h-8 w-full max-w-[190px] items-center justify-center overflow-hidden rounded-xl border-[2px] border-iio bg-transparent px-4 py-2 text-iio transition-all duration-200 hover:bg-transparent sm:h-9 sm:max-w-[45%] sm:rounded-2xl sm:px-2 sm:py-2'
-            >
-              {/* Fluid fill effect */}
-              <span className='absolute bottom-0 left-0 h-0 w-full bg-iio transition-all duration-200 ease-out group-hover:h-full' />
-
-              <span className='relative flex content-baseline items-center text-center font-[poppins] text-[16px] font-black group-hover:text-white sm:text-[18px]'>
+              <span className='relative flex content-baseline items-center text-center font-[poppins] text-[16px] font-black sm:text-[18px]'>
                 Ongoing
               </span>
-            </Link>
+            </button>
+            <button
+              onClick={() => setShowOngoing(false)}
+              className={`group relative flex h-8 w-[50%] max-w-[190px] items-center justify-center overflow-hidden rounded-xl border-[2px] border-iio px-4 py-2 text-iio transition-all duration-200 sm:h-9 sm:max-w-[45%] sm:rounded-2xl sm:px-2 sm:py-2 ${
+                !showOngoing ? 'bg-iio text-white' : ''
+              }`}
+            >
+              <span className='relative flex content-baseline items-center text-center font-[poppins] text-[16px] font-black sm:text-[18px]'>
+                Upcoming
+              </span>
+            </button>
           </div>
-          <div className='flex-col-1 sm:flex-col-3 flex justify-between gap-4 pb-5'>
-            <Link
-              href={'/'}
-              className='group relative flex h-56 w-full max-w-[190px] items-center justify-center overflow-hidden rounded-xl border-[2px] border-iip bg-transparent px-4 py-2 text-iio transition-all duration-200 hover:bg-transparent sm:h-96 sm:max-w-[25%] sm:rounded-2xl sm:px-2 sm:py-2'
-            >
-              <span className='relative flex content-baseline items-center text-center font-[poppins] text-[16px] font-black sm:text-[18px]'>
-                MUN
-              </span>
-            </Link>
-            <Link
-              href={'/'}
-              className='group relative flex h-56 w-full max-w-[190px] items-center justify-center overflow-hidden rounded-xl border-[2px] border-iip bg-transparent px-4 py-2 text-iio transition-all duration-200 hover:bg-transparent sm:h-96 sm:max-w-[35%] sm:rounded-2xl sm:px-2 sm:py-2'
-            >
-              <span className='relative flex content-baseline items-center text-center font-[poppins] text-[16px] font-black sm:text-[18px]'>
-                Abhivyakti
-              </span>
-            </Link>
-            <Link
-              href={'/'}
-              className='group relative flex h-56 w-full max-w-[190px] items-center justify-center overflow-hidden rounded-xl border-[2px] border-iip bg-transparent px-4 py-2 text-iio transition-all duration-200 hover:bg-transparent sm:h-96 sm:max-w-[25%] sm:rounded-2xl sm:px-2 sm:py-2'
-            >
-              <span className='relative flex content-baseline items-center text-center font-[poppins] text-[16px] font-black sm:text-[18px]'>
-                IIIT Sports
-              </span>
-            </Link>
+          {showOngoing ? <CardSliderOn /> : <CardSliderUP />}
+        </div>
+        <div className='flex w-full flex-col gap-2 px-8 py-0 sm:gap-5 sm:px-60 sm:py-24'>
+          <div className='flex pb-6 font-[makro] text-4xl font-bold text-black sm:text-5xl'>
+            Campus Gallery
+          </div>
+          <div className='grid w-full grid-cols-1 gap-12 align-middle sm:grid-cols-2'>
+            <div className='w-full'>
+              <GalleryCarousel />
+            </div>
+            <div className='w-full'>
+              <GallerySphere />
+            </div>
+          </div>
+        </div>
+        <div className='mt-16 flex w-full items-center justify-center py-20 sm:px-60'>
+          <div className='flex font-[makro] text-2xl font-bold text-black sm:text-5xl'>
+            Thank you for Visiting!
           </div>
         </div>
       </section>
-      <div className='h-[80vh] bg-[url(/prefooter.png)] bg-contain bg-center bg-no-repeat'></div>
+      <section className='aspect-[2385/1094] bg-[url(/prefooter.png)] bg-contain bg-center bg-no-repeat'></section>
     </div>
   )
 }

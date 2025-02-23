@@ -55,7 +55,7 @@ export default function Navbar() {
     if (!isHomePage) return // Don't track scroll on other pages
 
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100)
+      setIsScrolled(window.scrollY > 800)
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -129,11 +129,11 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className='fixed inset-0 z-50 flex flex-col backdrop-blur-lg'
+            className='fixed inset-0 z-50 flex flex-col justify-start backdrop-blur-lg'
           >
-            <motion.div className='flex flex-grow flex-row items-center justify-between px-12 py-8'>
+            <motion.div className='flex flex-row items-start justify-between px-12 py-8'>
               {/* Left Side */}
-              <motion.div className='flex-grow text-white'></motion.div>
+              <motion.div className=''></motion.div>
 
               {/* Cross Button (Right Side) */}
               <motion.button
@@ -153,7 +153,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ delay: 0.1 }}
-              className='mx-7 flex-grow flex-col items-center rounded-lg bg-white p-20 sm:mx-28 md:mx-64'
+              className='mx-7 flex-grow flex-col items-center rounded-lg bg-white px-6 py-3 sm:mx-72 sm:p-16'
             >
               <motion.input
                 initial={{ width: '0%' }}
@@ -162,7 +162,7 @@ export default function Navbar() {
                 transition={{ duration: 0.3 }}
                 type='text'
                 placeholder={`${displayText}${isDeleting ? '' : ''}`}
-                className='mb-16 mt-4 rounded-b-sm border-b-2 border-black px-2 font-[Poppins] text-5xl font-medium text-black placeholder-black outline-none focus:rounded-b-lg focus:border-b-2 focus:border-iio'
+                className='mb-16 mt-4 border-b-2 border-black px-2 py-1 font-[Poppins] text-2xl font-medium text-black placeholder-black outline-none focus:border-iio sm:py-2 sm:text-4xl'
                 autoFocus
               />
 
@@ -173,18 +173,18 @@ export default function Navbar() {
                 transition={{ delay: 0.2 }}
                 className='flex w-full flex-col content-start gap-2'
               >
-                <motion.div className='mb-3 w-fit px-2 font-[Poppins] text-sm text-black'>
+                <motion.div className='mb-3 w-fit px-2 font-[Poppins] text-xs text-black sm:text-sm'>
                   Helpful Links
                 </motion.div>
-                <motion.button className='relative mx-2 w-fit font-[Inter] text-base font-[600] text-iio before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-iio before:opacity-0 before:transition-all before:duration-300 after:absolute after:bottom-0 after:right-0 after:h-0.5 after:w-full after:bg-iio after:opacity-0 after:transition-all after:duration-300 hover:before:w-full hover:before:opacity-0 hover:after:w-0 hover:after:opacity-100'>
+                <motion.button className='relative mx-2 w-fit font-[Inter] text-sm font-[600] text-iio before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-iio before:opacity-0 before:transition-all before:duration-300 after:absolute after:bottom-0 after:right-0 after:h-0.5 after:w-full after:bg-iio after:opacity-0 after:transition-all after:duration-300 hover:before:w-full hover:before:opacity-0 hover:after:w-0 hover:after:opacity-100 sm:text-base'>
                   Banner via IIITN
                 </motion.button>
-                <motion.button className='relative mx-2 w-fit font-[Inter] text-base font-[600] text-iio before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-iio before:opacity-0 before:transition-all before:duration-300 after:absolute after:bottom-0 after:right-0 after:h-0.5 after:w-full after:bg-iio after:opacity-0 after:transition-all after:duration-300 hover:before:w-full hover:before:opacity-0 hover:after:w-0 hover:after:opacity-100'>
+                <motion.button className='relative mx-2 w-fit font-[Inter] text-sm font-[600] text-iio before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-iio before:opacity-0 before:transition-all before:duration-300 after:absolute after:bottom-0 after:right-0 after:h-0.5 after:w-full after:bg-iio after:opacity-0 after:transition-all after:duration-300 hover:before:w-full hover:before:opacity-0 hover:after:w-0 hover:after:opacity-100 sm:text-base'>
                   Office of the Registrar
                 </motion.button>
               </motion.div>
             </motion.div>
-            <motion.div className='mt-56 flex-grow px-4 py-2'></motion.div>
+            <motion.div className='mt-[410px] px-4 py-2 sm:mt-96'></motion.div>
           </motion.div>
         )}
       </AnimatePresence>
