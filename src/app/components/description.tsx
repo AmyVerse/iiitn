@@ -19,9 +19,6 @@ interface desprops {
 }
 
 const Description: FC<desprops> = ({
-  link,
-  email,
-  number,
   name,
   position,
   education,
