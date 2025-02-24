@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react'
 import { CardSliderOn, CardSliderUP } from './components/eventsCard'
 import GalleryCarousel from './components/galleryCarousel'
 import GallerySphere from './components/gallerySphere'
+import Navbar from './components/impSections/navbar'
 import { IButton1, IButton2 } from './components/invertButton'
-import Navbar from './components/navbar'
 import AppleGrid from './components/spotlightCarousel'
 
 export default function Home() {
@@ -34,23 +34,18 @@ export default function Home() {
       </section>
       {/* First Viewport (Header Section) */}
       <section
-        className={`relative z-0 flex h-[calc(100vh-98px)] flex-col items-center justify-center transition-all duration-500`}
+        className={`relative z-0 flex h-[calc(100vh-140px)] flex-col items-center justify-center transition-all duration-500 sm:h-[calc(100vh-98px)]`}
       >
-        {/* Main Heading */}
-        <h1 className='relative -mb-2 font-[Poppins] text-[15vw] font-[900] text-white sm:text-[15vw] md:-mb-6 md:text-[12vw] lg:text-[180px]'>
-          IIITN
-        </h1>
-
         {/* Subtext - Centered Below */}
-        <div className='relative block font-[poppins] text-[3vw] font-semibold text-white sm:text-[4vw] md:text-[3vw] lg:text-[24px]'>
+        <div className='relative block pt-20 text-center font-[poppins] text-2xl font-semibold text-white sm:mt-[150px] sm:pt-0 sm:text-5xl'>
           Indian Institute of Information Technology, Nagpur
         </div>
-        <div className='relative block font-[mukta] text-[3vw] text-white sm:text-[4vw] md:text-[3vw] lg:text-[24px]'>
+        <div className='relative block pt-6 text-center font-[mukta] text-xl text-white sm:pt-7 sm:text-4xl'>
           भारतीय सूचना प्रौद्योगिकी संस्थान, नागपुर
         </div>
 
         {/* Buttons with Negative Z (Still Clickable) */}
-        <div className='relative mt-20 grid grid-cols-2 gap-4 px-4 sm:grid-cols-1 lg:flex lg:justify-center lg:gap-28 lg:space-x-0 lg:px-0'>
+        <div className='relative mt-24 grid grid-cols-2 gap-4 px-4 sm:mt-48 sm:flex sm:grid-cols-1 sm:justify-center sm:gap-28'>
           <IButton1 content='ABOUT US' onClick={() => window.open('#about', '_self')} />
           <IButton1 content='ACADEMICS' onClick={() => window.open('/about', '_self')} />
           <IButton1 content='ADMISSION' onClick={() => window.open('/about', '_self')} />
@@ -81,10 +76,11 @@ export default function Home() {
 
       {/* New Content Section */}
       <section className="relative flex aspect-[1708/517] flex-col bg-[url('/blockbg.png')] bg-center">
+        {/* About Section */}
         <div className='flex w-full flex-col gap-2 px-8 pb-24 sm:gap-5 sm:px-60'>
           <div
             id='about'
-            className='flex pb-3 pt-24 font-[makro] text-4xl font-bold text-black sm:text-5xl'
+            className='mb-10 flex border-b-[1px] border-black py-3 pt-24 font-[makro] text-4xl font-bold text-black sm:text-5xl'
           >
             We are...
           </div>
@@ -102,16 +98,20 @@ export default function Home() {
             <IButton2 content='Learn More' onClick={() => window.open('/about', '_self')} />
           </div>
         </div>
+
+        {/* Spotlights Section */}
         <div className='flex w-full flex-col gap-2 px-8 py-0 sm:gap-5 sm:px-60 sm:py-24'>
-          <div className='flex pb-6 font-[makro] text-4xl font-bold text-black sm:text-5xl'>
+          <div className='mb-10 flex border-b-[1px] border-black py-1 pb-6 font-[makro] text-4xl font-bold text-black sm:text-5xl'>
             Spotlights
           </div>
           <div>
             <AppleGrid />
           </div>
         </div>
+
+        {/* Events Section */}
         <div className='flex w-full flex-col gap-2 px-8 py-24 sm:gap-5 sm:px-60'>
-          <div className='flex pb-3 font-[makro] text-4xl font-bold text-black sm:text-5xl'>
+          <div className='mb-10 flex border-b-[1px] border-black py-3 pb-3 font-[makro] text-4xl font-bold text-black sm:text-5xl'>
             Events
           </div>
           <div className='flex justify-around gap-4 pb-5'>
@@ -139,8 +139,26 @@ export default function Home() {
           </div>
           {showOngoing ? <CardSliderOn /> : <CardSliderUP />}
         </div>
+
+        {/* Admission */}
         <div className='flex w-full flex-col gap-2 px-8 py-0 sm:gap-5 sm:px-60 sm:py-24'>
-          <div className='flex pb-6 font-[makro] text-4xl font-bold text-black sm:text-5xl'>
+          <div className='mb-10 flex border-b-[1px] border-black py-2 font-[makro] text-4xl font-bold text-black sm:text-5xl'>
+            Admission
+          </div>
+          <div></div>
+        </div>
+
+        {/* Research */}
+        <div className='flex w-full flex-col gap-2 px-8 py-0 sm:gap-5 sm:px-60 sm:py-24'>
+          <div className='mb-10 flex border-b-[1px] border-black py-3 font-[makro] text-4xl font-bold text-black sm:text-5xl'>
+            Research
+          </div>
+          <div></div>
+        </div>
+
+        {/* Campus Gallery */}
+        <div className='flex w-full flex-col gap-2 px-8 py-0 sm:gap-5 sm:px-60 sm:py-24'>
+          <div className='mb-10 flex border-b-[1px] border-black py-2 pb-5 font-[makro] text-4xl font-bold text-black sm:text-5xl'>
             Campus Gallery
           </div>
           <div className='grid w-full grid-cols-1 gap-12 align-middle sm:grid-cols-2'>
@@ -152,13 +170,15 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Thanku */}
         <div className='mt-16 flex w-full items-center justify-center py-20 sm:px-60'>
           <div className='flex font-[makro] text-2xl font-bold text-black sm:text-5xl'>
             Thank you for Visiting!
           </div>
         </div>
       </section>
-      <section className='aspect-[2385/1094] bg-[url(/prefooter.png)] bg-contain bg-center bg-no-repeat'></section>
+      <section className='aspect-[2065/924] bg-[url(/prefooter.png)] bg-contain bg-center bg-no-repeat'></section>
     </div>
   )
 }

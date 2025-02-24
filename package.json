@@ -11,6 +11,7 @@
     "format": "prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
+    "@photo-sphere-viewer/core": "^5.12.1",
     "@prisma/client": "^6.3.1",
     "@tailwindcss/postcss": "^4.0.6",
     "framer-motion": "^12.4.5",

@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
 import { Inter, Mukta, Poppins } from 'next/font/google'
 import localFont from 'next/font/local'
-import { Footer } from './components/footer'
-import NavbarWrapper from './components/navBarWrapper'
+import { Footer } from './components/impSections/footer'
+import NavbarWrapper from './components/impSections/navBarWrapper'
 import './globals.css'
 
 const poppins = Poppins({

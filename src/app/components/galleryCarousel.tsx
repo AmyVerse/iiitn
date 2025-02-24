@@ -75,8 +75,8 @@ export default function InteractiveGrid() {
           >
             <Image src={image.src} alt={image.alt} fill className='rounded-xl object-cover' />
             <motion.div className='absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-4'>
-              <h3 className='text-lg font-bold text-white'>{image.title}</h3>
-              <p className='text-sm text-white/90'>{image.description}</p>
+              {/* <h3 className='text-lg font-bold text-white'>{image.title}</h3>
+              <p className='text-sm text-white/90'>{image.description}</p> */}
             </motion.div>
           </motion.div>
         )

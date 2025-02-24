@@ -1,27 +1,37 @@
 'use client'
 
+import { Viewer } from '@photo-sphere-viewer/core'
+import '@photo-sphere-viewer/core/index.css'
+
 import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const images = [
-  { src: '/carousel/camp1.jpg', alt: 'Image 1', title: 'Campus Life' },
-  { src: '/carousel/camp2.jpg', alt: 'Image 2', title: 'Research Labs' },
-  { src: '/carousel/camp3.jpg', alt: 'Image 3', title: 'Library' },
-  { src: '/carousel/camp4.jpg', alt: 'Image 4', title: 'Sports Complex' },
-  { src: '/carousel/camp5.jpg', alt: 'Image 5', title: 'Auditorium' },
+  { src: '/sphere.jpg', alt: 'Image 0', title: 'Auditorium' },
+  { src: '/carousel/camp1.jpg', alt: 'Image 1', title: 'Amphitheatre' },
+  { src: '/carousel/camp2.jpg', alt: 'Image 2', title: 'Hostel' },
+  { src: '/carousel/camp3.jpg', alt: 'Image 3', title: 'Sports' },
+  { src: '/carousel/camp4.jpg', alt: 'Image 4', title: 'Entrance' },
 ]
 
 export default function GallerySphere() {
   const [index, setIndex] = useState(0)
+  const viewerRef = useRef<HTMLDivElement | null>(null)
 
-  // Auto-slide every 3 seconds
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % images.length)
-    }, 2000)
-    return () => clearInterval(interval)
-  }, [])
+    if (viewerRef.current) {
+      const viewer = new Viewer({
+        container: viewerRef.current,
+        panorama: images[index].src,
+        defaultZoomLvl: 0, // Adjust this to control zoom level
+        fisheye: false, // Set to true if you want a wider view
+      })
+
+      return () => {
+        viewer.destroy()
+      }
+    }
+  }, [index])
 
   const nextSlide = () => setIndex((prev) => (prev + 1) % images.length)
   const prevSlide = () => setIndex((prev) => (prev - 1 + images.length) % images.length)
@@ -55,11 +65,11 @@ export default function GallerySphere() {
               key={i}
               className='absolute h-full w-full'
               initial={{ opacity: 0, y: -50 }}
-              animate={index === i ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
+              animate={index === i ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               exit={{ opacity: 0, y: -50 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
-              <Image src={image.src} alt={image.alt} fill className='rounded-xl object-cover' />
+              {index === i && <div ref={viewerRef} className='h-full w-full'></div>}
               <div className='absolute bottom-4 left-4 rounded-lg bg-black/60 px-3 py-1 text-white'>
                 {image.title}
               </div>

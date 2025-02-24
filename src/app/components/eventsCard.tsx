@@ -1,135 +1,118 @@
 'use client'
 
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
 const cardsOn = [
-  { id: 1, title: 'Card 1', color: 'bg-red-400' },
-  { id: 2, title: 'Card 2', color: 'bg-blue-400' },
-  { id: 3, title: 'Card 3', color: 'bg-green-400' },
-  { id: 4, title: 'Card 4', color: 'bg-yellow-400' },
-  { id: 5, title: 'Card 5', color: 'bg-purple-400' },
+  { id: 1, title: 'Web Development Competition', color: 'bg-iip' },
+  { id: 2, title: 'Demo Days', color: 'bg-iio' },
+  { id: 3, title: 'Card 3', color: 'bg-iip' },
+  { id: 4, title: 'Card 4', color: 'bg-iio' },
+  { id: 1, title: 'Web Development Competition', color: 'bg-iip' },
+  { id: 2, title: 'Demo Days', color: 'bg-iio' },
+  { id: 3, title: 'Card 3', color: 'bg-iip' },
+  { id: 4, title: 'Card 4', color: 'bg-iio' },
+  { id: 1, title: 'Web Development Competition', color: 'bg-iip' },
+  { id: 2, title: 'Demo Days', color: 'bg-iio' },
+  { id: 3, title: 'Card 3', color: 'bg-iip' },
+  { id: 4, title: 'Card 4', color: 'bg-iio' },
+  { id: 1, title: 'Web Development Competition', color: 'bg-iip' },
+  { id: 2, title: 'Demo Days', color: 'bg-iio' },
+  { id: 3, title: 'Card 3', color: 'bg-iip' },
+  { id: 4, title: 'Card 4', color: 'bg-iio' },
+  { id: 1, title: 'Web Development Competition', color: 'bg-iip' },
+  { id: 2, title: 'Demo Days', color: 'bg-iio' },
+  { id: 3, title: 'Card 3', color: 'bg-iip' },
+  { id: 4, title: 'Card 4', color: 'bg-iio' },
 ]
 
-export function CardSliderOn() {
-  const [activeIndex, setActiveIndex] = useState(0)
+const cardsUp = [
+  { id: 1, title: 'Abhivyakti', color: 'bg-iip' },
+  { id: 2, title: 'MUN', color: 'bg-iio' },
+  { id: 3, title: 'Inter IIIT Sports', color: 'bg-iip' },
+  { id: 4, title: 'D-trexia Dance', color: 'bg-iio' },
+  { id: 1, title: 'Web Development Competition', color: 'bg-iip' },
+  { id: 2, title: 'Demo Days', color: 'bg-iio' },
+  { id: 3, title: 'Card 3', color: 'bg-iip' },
+  { id: 4, title: 'Card 4', color: 'bg-iio' },
+  { id: 1, title: 'Web Development Competition', color: 'bg-iip' },
+  { id: 2, title: 'Demo Days', color: 'bg-iio' },
+  { id: 3, title: 'Card 3', color: 'bg-iip' },
+  { id: 4, title: 'Card 4', color: 'bg-iio' },
+  { id: 1, title: 'Web Development Competition', color: 'bg-iip' },
+  { id: 2, title: 'Demo Days', color: 'bg-iio' },
+  { id: 3, title: 'Card 3', color: 'bg-iip' },
+  { id: 4, title: 'Card 4', color: 'bg-iio' },
+  { id: 1, title: 'Web Development Competition', color: 'bg-iip' },
+  { id: 2, title: 'Demo Days', color: 'bg-iio' },
+  { id: 3, title: 'Card 3', color: 'bg-iip' },
+  { id: 4, title: 'Card 4', color: 'bg-iio' },
+]
+
+function CardSlider({ cards }: { cards: { id: number; title: string; color: string }[] }) {
+  const [index, setIndex] = useState(0)
+  const totalCards = cards.length
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % cardsOn.length)
-    }, 2000) // Auto-slide every 2 seconds
+      setIndex((prev) => (prev + 1) % (totalCards + 1)) // Extra slide for seamless looping
+    }, 2000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [totalCards])
+
+  useEffect(() => {
+    if (index === totalCards) {
+      setTimeout(() => setIndex(0), 500) // Instantly reset when reaching duplicate
+    }
+  }, [index, totalCards])
 
   return (
-    <div className='flex w-full flex-col items-center justify-center'>
+    <div className='relative flex w-full flex-col items-center overflow-hidden'>
       {/* Card Container */}
-      <div className='relative w-[90%] max-w-5xl overflow-hidden'>
-        <div className='flex gap-6'>
-          <AnimatePresence>
-            {cardsOn.map((card, index) => {
-              const isVisible = index >= activeIndex && index < activeIndex + 3 // Show 3 cards at a time
-              return (
-                isVisible && (
-                  <motion.div
-                    key={card.id}
-                    className={`relative flex h-80 w-60 items-center justify-center rounded-xl shadow-lg ${card.color}`}
-                    initial={{ x: '100%', opacity: 0 }}
-                    animate={{ x: '0%', opacity: 1 }}
-                    exit={{ x: '-100%', opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <h2 className='text-2xl font-bold text-white'>{card.title}</h2>
-                  </motion.div>
-                )
-              )
-            })}
-          </AnimatePresence>
-        </div>
+      <div className='flex w-full justify-center overflow-hidden'>
+        <motion.div
+          className='flex gap-6'
+          animate={{ x: `-${index * 5}%` }}
+          transition={{ ease: 'easeInOut', duration: index === totalCards ? 0 : 0.5 }}
+          style={{ display: 'flex', width: '500%' }}
+        >
+          {[...cards, cards[0]].map(
+            (
+              card,
+              i, // Append first card at the end
+            ) => (
+              <div
+                key={i}
+                className={`flex h-60 w-60 items-center justify-center rounded-xl shadow-lg ${card.color}`}
+              >
+                <h2 className='text-2xl font-bold text-white'>{card.title}</h2>
+              </div>
+            ),
+          )}
+        </motion.div>
       </div>
 
-      {/* Numbered Dot Indicators */}
-      <div className='mt-12 flex h-9 flex-row items-center gap-4'>
-        {cardsOn.map((_, index) => (
+      {/* Navigation Dots */}
+      <div className='mt-6 flex h-9 gap-3'>
+        {cards.map((_, i) => (
           <button
-            key={index}
-            onClick={() => setActiveIndex(index)} // Enable manual selection
-            className={`flex content-center items-center justify-center rounded-full border text-center transition-all duration-300 ${
-              activeIndex === index
-                ? 'h-8 w-8 bg-white text-lg text-black outline outline-black'
-                : 'h-5 w-5 bg-black text-sm text-white'
+            key={i}
+            onClick={() => setIndex(i)}
+            className={`h-3 w-3 rounded-full transition-all ${
+              index === i ? 'bg-black outline outline-black' : 'bg-black/50'
             }`}
-          >
-            {index + 1}
-          </button>
+          />
         ))}
       </div>
     </div>
   )
 }
 
-const cardsUp = [
-  { id: 1, title: 'Card A', color: 'bg-red-400' },
-  { id: 2, title: 'Card B', color: 'bg-blue-400' },
-  { id: 3, title: 'Card C', color: 'bg-green-400' },
-  { id: 4, title: 'Card D', color: 'bg-yellow-400' },
-]
+export function CardSliderOn() {
+  return <CardSlider cards={cardsOn} />
+}
 
 export function CardSliderUP() {
-  const [activeIndex, setActiveIndex] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % cardsUp.length)
-    }, 2000) // Auto-slide every 2 seconds
-
-    return () => clearInterval(interval)
-  }, [])
-
-  return (
-    <div className='flex w-full flex-col items-center justify-center'>
-      {/* Card Container */}
-      <div className='relative w-[90%] max-w-5xl overflow-hidden'>
-        <div className='flex gap-6'>
-          <AnimatePresence>
-            {cardsUp.map((card, index) => {
-              const isVisible = index >= activeIndex && index < activeIndex + 3 // Show 3 cards at a time
-              return (
-                isVisible && (
-                  <motion.div
-                    key={card.id}
-                    className={`relative flex h-80 w-60 items-center justify-center rounded-xl shadow-lg ${card.color}`}
-                    initial={{ x: '100%', opacity: 0 }}
-                    animate={{ x: '0%', opacity: 1 }}
-                    exit={{ x: '-100%', opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <h2 className='text-2xl font-bold text-white'>{card.title}</h2>
-                  </motion.div>
-                )
-              )
-            })}
-          </AnimatePresence>
-        </div>
-      </div>
-
-      {/* Numbered Dot Indicators */}
-      <div className='mt-12 flex flex-row items-center gap-4'>
-        {cardsUp.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setActiveIndex(index)} // Enable manual selection
-            className={`flex content-center items-center justify-center rounded-full border text-center transition-all duration-300 ${
-              activeIndex === index
-                ? 'h-8 w-8 bg-white text-lg text-black outline outline-black'
-                : 'h-5 w-5 bg-black text-sm text-white'
-            }`}
-          >
-            {index + 1}
-          </button>
-        ))}
-      </div>
-    </div>
-  )
+  return <CardSlider cards={cardsUp} />
 }
