@@ -17,7 +17,7 @@ type GridArea = keyof typeof gridClasses
 
 const images: { src: string; alt: string; area: GridArea; title: string; description: string }[] = [
   {
-    src: '/carousel/camp1.jpg',
+    src: '/carousel/camp5.jpg',
     alt: 'Image 1',
     area: 'one',
     title: 'Campus Life',
@@ -45,7 +45,7 @@ const images: { src: string; alt: string; area: GridArea; title: string; descrip
     description: 'Stay active and healthy',
   },
   {
-    src: '/carousel/camp5.jpg',
+    src: '/carousel/camp1.jpg',
     alt: 'Image 5',
     area: 'five',
     title: 'Auditorium',

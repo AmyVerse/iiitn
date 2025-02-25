@@ -76,7 +76,7 @@ export default function Navbar() {
           }`}
         >
           <div className='flex items-center'>
-            <Link target='_blank' href='https://www.iiitn.ac.in'>
+            <Link target='_self' href='http://localhost:3000'>
               <Image
                 className='hidden sm:block'
                 src={icon}

@@ -171,14 +171,14 @@ export default function Sidebar() {
             </AnimatePresence>
           </ul>
           <IButton1
-            onClick={() => setIsOpen(false)}
-            className='mt-9 w-full sm:w-full border-white/10 font-normal text-white'
+            onClick={() => (window.location.href = '../../login')}
+            className='mt-9 w-full border-white/10 font-normal text-white sm:w-full'
             content='Login'
             className1='bg-transparent'
           />
           <IButton1
             onClick={() => setIsOpen(false)}
-            className='mt-2 w-full sm:w-full border-white/10 font-normal text-white'
+            className='mt-2 w-full border-white/10 font-normal text-white sm:w-full'
             content='CLOSE MENU'
             className1='bg-transparent'
           />

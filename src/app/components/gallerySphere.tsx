@@ -7,9 +7,9 @@ import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 
 const images = [
-  { src: '/sphere.jpg', alt: 'Image 0', title: 'Auditorium' },
-  { src: '/carousel/camp1.jpg', alt: 'Image 1', title: 'Amphitheatre' },
-  { src: '/carousel/camp2.jpg', alt: 'Image 2', title: 'Hostel' },
+  { src: '/sphere1.jpg', alt: 'Image 0', title: 'Auditorium' },
+  { src: '/sphere3.jpg', alt: 'Image 1', title: 'Academic' },
+  { src: '/sphere2.jpg', alt: 'Image 2', title: 'Hostel' },
   { src: '/carousel/camp3.jpg', alt: 'Image 3', title: 'Sports' },
   { src: '/carousel/camp4.jpg', alt: 'Image 4', title: 'Entrance' },
 ]

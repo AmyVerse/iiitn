@@ -33,7 +33,9 @@ export function Footer() {
     <div>
       <footer className='bg-[#0d0827] font-[Poppins] text-white'>
         {/* upper */}
-        <div className='mx-auto grid h-max grid-cols-1 px-4 pb-4 pt-10 text-center sm:grid-cols-2 sm:pb-12 sm:pl-72 sm:text-left'>
+        <div className='relative mx-auto grid h-max grid-cols-1 px-4 pb-4 pt-10 text-center sm:grid-cols-2 sm:pb-12 sm:pl-72 sm:text-left'>
+          <img src='/loader.gif' alt='IIITN Logo' className='absolute sm:-top-20 -top-[58px] left-3 sm:left-12 sm:h-28 sm:w-28 h-20 w-20' />
+
           {/* logo div */}
           <div className='mb-7 flex flex-col items-center justify-center sm:items-start sm:px-0'>
             <ul className=''>
@@ -161,7 +163,7 @@ export function Footer() {
             <ul className='lg:space-x-50 mb-4 flex flex-col gap-2'>
               <li className='text-sm text-gray-500 transition-all hover:px-1 hover:text-[#be6233] md:text-base lg:text-base'>
                 <a
-                  href='#'
+                  href='../prismatest'
                   className='relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-0 after:bg-[#be6233] after:transition-all after:duration-300 hover:after:left-0 hover:after:w-full'
                 >
                   Online Fees Payment
@@ -169,7 +171,7 @@ export function Footer() {
               </li>
               <li className='text-sm text-gray-500 transition-all hover:px-1 hover:text-[#be6233] md:text-base lg:text-base'>
                 <a
-                  href='#'
+                  href='../prismatest/test2'
                   className='relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-0 after:bg-[#be6233] after:transition-all after:duration-300 hover:after:left-0 hover:after:w-full'
                 >
                   Academic Calendar
