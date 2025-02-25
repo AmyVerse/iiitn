@@ -1,6 +1,12 @@
 'use server'
 import { PrismaClient } from '@prisma/client'
 
+type Link = {
+  id: number
+  name: string
+  url: string
+}
+
 const prisma = new PrismaClient()
 
 // 🟢 Add Data

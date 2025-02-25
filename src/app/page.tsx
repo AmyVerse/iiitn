@@ -47,9 +47,9 @@ export default function Home() {
         {/* Buttons with Negative Z (Still Clickable) */}
         <div className='relative mt-24 grid grid-cols-2 gap-4 px-4 sm:mt-48 sm:flex sm:grid-cols-1 sm:justify-center sm:gap-28'>
           <IButton1 content='ABOUT US' onClick={() => window.open('#about', '_self')} />
-          <IButton1 content='ACADEMICS' onClick={() => window.open('/about', '_self')} />
-          <IButton1 content='ADMISSION' onClick={() => window.open('/about', '_self')} />
-          <IButton1 content='UPDATES' onClick={() => window.open('/about', '_self')} />
+          <IButton1 content='ACADEMICS' onClick={() => window.open('/academics', '_self')} />
+          <IButton1 content='ADMISSION' onClick={() => window.open('#ad', '_self')} />
+          <IButton1 content='UPDATES' onClick={() => window.open('../prismatest', '_self')} />
         </div>
       </section>
 
@@ -141,11 +141,25 @@ export default function Home() {
         </div>
 
         {/* Admission */}
-        <div className='flex w-full flex-col gap-2 px-8 py-0 sm:gap-5 sm:px-60 sm:py-24'>
+        <div id='ad' className='flex w-full flex-col gap-2 px-8 py-1 sm:gap-5 sm:px-60 sm:py-24'>
           <div className='mb-10 flex border-b-[1px] border-black py-2 font-[makro] text-4xl font-bold text-black sm:text-5xl'>
             Admission
           </div>
-          <div></div>
+          <div className='flex pb-5 font-[poppins] text-lg font-normal text-black sm:text-xl'>
+            We strive to bring the best and brightest minds to our campus, fostering a dynamic and
+            innovative learning environment.
+            <br />
+            <br /> Admissions for the first semester of our Bachelor of Technology (B.Tech) programs
+            in Computer Science and Engineering (CSE) and Electronics and Communication Engineering
+            (ECE) are conducted through JoSAA, starting in August.
+          </div>
+          <div>
+            <IButton2
+              content='Apply'
+              className='mt-2 bg-transparent'
+              onClick={() => window.open('/admission', '_self')}
+            />
+          </div>
         </div>
 
         {/* Research */}
@@ -153,7 +167,21 @@ export default function Home() {
           <div className='mb-10 flex border-b-[1px] border-black py-3 font-[makro] text-4xl font-bold text-black sm:text-5xl'>
             Research
           </div>
-          <div></div>
+          <div className='flex pb-5 font-[poppins] text-lg font-normal text-black sm:text-xl'>
+            We are committed to pioneering research that drives innovation and technological
+            advancement.
+            <br />
+            <br />
+            Our faculty and students actively engage in cutting-edge research across various
+            domains, fostering a culture of curiosity and discovery.
+          </div>
+          <div>
+            <IButton2
+              content='Know more'
+              className='mt-2 bg-transparent'
+              onClick={() => window.open('/about', '_self')}
+            />
+          </div>
         </div>
 
         {/* Campus Gallery */}

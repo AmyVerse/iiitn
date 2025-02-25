@@ -82,7 +82,7 @@ export default async function RootLayout({
 }
 
 //npx prettier --write .
-//npx prisma migrate dev --name init
+//npx prisma migrate dev --name initver
 
 //rm -rf node_modules package-lock.json
 // npm install

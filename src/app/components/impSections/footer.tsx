@@ -34,7 +34,11 @@ export function Footer() {
       <footer className='bg-[#0d0827] font-[Poppins] text-white'>
         {/* upper */}
         <div className='relative mx-auto grid h-max grid-cols-1 px-4 pb-4 pt-10 text-center sm:grid-cols-2 sm:pb-12 sm:pl-72 sm:text-left'>
-          <img src='/loader.gif' alt='IIITN Logo' className='absolute sm:-top-20 -top-[58px] left-3 sm:left-12 sm:h-28 sm:w-28 h-20 w-20' />
+          <img
+            src='/loader.gif'
+            alt='IIITN Logo'
+            className='absolute -top-[58px] left-3 h-20 w-20 sm:-top-20 sm:left-12 sm:h-28 sm:w-28'
+          />
 
           {/* logo div */}
           <div className='mb-7 flex flex-col items-center justify-center sm:items-start sm:px-0'>

@@ -35,12 +35,15 @@ const LinksPage = () => {
 
   return (
     <Loader isLoading={loading}>
-      <div className='flex min-h-screen flex-col items-center justify-center bg-green-100 p-10'>
-        <h1 className='mb-6 text-center text-4xl font-bold text-black'>Useful Links</h1>
-        <div className='space-y-4'>
+      <div className='flex h-[800px] flex-col items-center justify-center bg-gray-200 p-10'>
+        <h1 className='mb-6 text-center text-4xl font-bold text-black'>Realtime fetching</h1>
+        <div className='flex flex-row gap-8 justify-between space-y-4'>
           {links.length > 0 ? (
             links.map((link) => (
-              <div key={link.id} className='w-80 rounded-lg bg-white p-4 text-center shadow-lg'>
+              <div
+                key={link.id}
+                className='flex w-80 flex-col rounded-lg bg-white p-4 text-center shadow-lg'
+              >
                 <a
                   href={link.url}
                   target='_blank'
@@ -49,7 +52,11 @@ const LinksPage = () => {
                 >
                   {link.name}
                 </a>
-                <img src={link.url} alt={link.name} />
+                <img
+                  src={link.url}
+                  alt={link.name}
+                  className='flex flex-row justify-center bg-black'
+                />
               </div>
             ))
           ) : (

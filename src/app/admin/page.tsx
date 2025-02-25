@@ -177,6 +177,9 @@ const Faculty = () => {
   const fetchLinks = async () => {
     try {
       const response = await fetch('/api/auth/link')
+      if (!response.ok) {
+        throw new Error('Network response was not ok')
+      }
       const data = await response.json()
       setLinks(data)
     } catch (error) {
@@ -189,6 +192,7 @@ const Faculty = () => {
   return (
     <div className='rounded-lg bg-white p-6 shadow-md'>
       <h2 className='mb-4 text-2xl font-semibold text-black'>Links</h2>
+      <h6>https://picsum.photos/seed/picsum/200</h6>
 
       {/* Buttons for adding a new entry */}
       <div className='mt-4 flex gap-3'>
@@ -266,13 +270,13 @@ const Faculty = () => {
         action={async (formData) => {
           if (operation === 'add') {
             await addProduct(formData)
-            setMessage('Product Added!')
+            setMessage('Entry Added!')
           } else if (operation === 'update') {
             await updateProduct(formData)
-            setMessage('Product Updated!')
+            setMessage('Entry Updated!')
           } else if (operation === 'delete') {
             await deleteProduct(formData)
-            setMessage('Product Deleted!')
+            setMessage('Entry Deleted!')
           }
         }}
         className='my-12 flex flex-col gap-3 rounded-lg border-2 border-black p-3'
@@ -310,11 +314,7 @@ const Faculty = () => {
         )}
 
         {/* Submit Button */}
-        <button
-          onClick={() => window.location.reload()}
-          type='submit'
-          className='max-w-44 rounded-md bg-blue-500 p-2 text-white'
-        >
+        <button type='submit' className='max-w-44 rounded-md bg-blue-500 p-2 text-white'>
           {operation.charAt(0).toUpperCase() + operation.slice(1)} Entry
         </button>
       </form>
