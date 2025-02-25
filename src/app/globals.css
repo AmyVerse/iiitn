@@ -5,6 +5,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-poppins: 'Poppins', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-mukta: 'Mukta', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,7 +20,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: poppins, sans-serif;
+  font-family: var(--font-poppins);
 }
 
 @keyframes scroll {
@@ -29,6 +32,56 @@ body {
   }
 }
 
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
 .animate-scrolling {
   animation: scroll 20s linear infinite;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.navbar-transition {
+  transition:
+    background-color 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+.font-inter {
+  font-family: var(--font-inter);
+}
+
+.font-mukta {
+  font-family: var(--font-mukta);
+}
+
+input::placeholder {
+  transition: all 0.1s ease-out;
+  animation: fadeInOut 0.7s ease-in-out;
+}
+
+@layer utilities {
+  .cursor-cross {
+    cursor: url('../../public/cursor.svg'), auto;
+  }
 }

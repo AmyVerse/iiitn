@@ -46,3 +46,9 @@ model Faculty {
   imageId    Int           @unique
   image      FacultyImages @relation(fields: [imageId], references: [id]) // Reference image table
 }
+
+model Link {
+  id   Int    @id @default(autoincrement())
+  name String
+  url  String
+}
