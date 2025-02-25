@@ -46,7 +46,7 @@ const Description: FC<desprops> = ({
             {["Education", "Experience", "Research & Publications", "More"].map((text, index) => (
               <td
                 key={index}
-                className={`box-border w-1/4 cursor-pointer  border-iip p-[0.4rem] text-center font-sans  ${
+                className={`box-border w-1/4 cursor-pointer  border-iip p-[0.4rem] text-center font-sans underline-onhover  ${
                   selectedCell === index ? "bg-iip text-white underline decoration-white" : "bg-white text-iip transition-all hover:border-b-[0.20rem] hover:p-[0.45rem]"
                 } ${index === 3 ? "border-r-0 hover:border-b-4" : "border-r-2"} ${index === 0 ? "rounded-l-md" : ""} ${
                   index === 3 ? "rounded-r-md" : ""
