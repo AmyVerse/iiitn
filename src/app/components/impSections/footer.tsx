@@ -5,24 +5,19 @@ import { useState } from 'react'
 
 const socialLinks = [
   {
-    id: 'facebook',
-    href: 'https://facebook.com',
-    src: '/sm/fb.svg',
-  },
-  {
     id: 'twitter',
     href: 'https://x.com/IIITN_OFFICIAL',
     src: '/sm/x.svg',
   },
   {
-    id: 'instagram',
-    href: 'https://instagram.com/iiit_nagpur',
-    src: '/sm/ig.svg',
-  },
-  {
     id: 'linkedin',
     href: 'https://www.linkedin.com/in/iiitnofficial/',
     src: '/sm/ld.svg',
+  },
+  {
+    id: 'instagram',
+    href: 'https://instagram.com/iiit_nagpur',
+    src: '/sm/ig.svg',
   },
 ]
 
@@ -43,35 +38,39 @@ export function Footer() {
           {/* logo div */}
           <div className='mb-7 flex flex-col items-center justify-center sm:items-start sm:px-0'>
             <ul className=''>
-              <h3 className='text-xl font-semibold'>Where are we?</h3>
+              <h3 className='text-xl font-semibold'>Contact Us</h3>
               <li className='mt-8 font-normal sm:mt-5'>
                 <div className='mb-5 border-b border-[#403185] pb-4 text-sm font-medium sm:pb-3 sm:text-base'>
                   Waranga, Butibori, Nagpur, Maharashtra - 441108
                 </div>
               </li>
               <ul className='mb-5 flex flex-col gap-2 text-white/80'>
-                <li>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    width='1rem'
-                    height='1rem'
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    stroke='currentColor'
-                    strokeWidth='2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    className='lucide lucide-phone mt-1 inline-block align-top sm:p-[0.02rem]'
-                  >
-                    <path d='M22 16.92V21a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 1 4.18 2 2 0 0 1 3 2h4.09a2 2 0 0 1 2 1.72 13 13 0 0 0 .57 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 13 13 0 0 0 2.81.57 2 2 0 0 1 1.72 2z'></path>
-                  </svg>
-                  <div className='inline-block pl-3 text-sm transition-all hover:pl-4 sm:text-sm'>
-                    <a href='tel:+919405215010' className='hover:text-gray-400'>
-                      9405215010
-                    </a>
-                  </div>
+                <li className="relative inline-block w-fit no-underline transition-all after:absolute 
+                after:bottom-0 after:left-[35px] after:w-[calc(100%-35px)] after:h-[2px] after:origin-bottom-right after:scale-x-0 after:rounded-lg
+                after:bg-gray-100 after:transition-transform after:duration-300 after:ease-in-out after:content-[''] hover:pl-2
+                hover:text-gray-100 hover:after:origin-bottom-left hover:after:scale-x-100">
+                  <a href='tel:+919405215010'>
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      width='1rem'
+                      height='1rem'
+                      viewBox='0 0 24 24'
+                      fill='none'
+                      stroke='currentColor'
+                      strokeWidth='2'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      className='lucide lucide-phone mt-1 inline-block align-top sm:p-[0.02rem]'
+                    >
+                      <path d='M22 16.92V21a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 1 4.18 2 2 0 0 1 3 2h4.09a2 2 0 0 1 2 1.72 13 13 0 0 0 .57 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 13 13 0 0 0 2.81.57 2 2 0 0 1 1.72 2z'></path>
+                    </svg>
+                    <div className='inline-block pl-3 text-sm transition-all sm:text-sm'>Phone</div>
+                  </a>
                 </li>
-                <li>
+                <li className="relative inline-block w-fit  no-underline transition-all after:absolute 
+                after:bottom-0 after:left-[37px] after:w-[calc(100%-37px)] after:h-[2px] after:origin-bottom-right after:scale-x-0 after:rounded-lg
+                after:bg-gray-100 after:transition-transform after:duration-300 after:ease-in-out after:content-[''] hover:pl-2
+                hover:text-gray-100 hover:after:origin-bottom-left hover:after:scale-x-100">
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='1rem'
@@ -88,12 +87,13 @@ export function Footer() {
                     <polyline points='22,6 12,13 2,6'></polyline>
                   </svg>
                   <div className='inline-block pl-3 text-sm transition-all hover:pl-4 sm:text-sm'>
-                    <a href='mailto:registrar@iiitn.ac.in' className='hover:text-gray-400'>
-                      registrar@iiitn.ac.in
-                    </a>
+                    <a href='mailto:registrar@iiitn.ac.in'>E-mail</a>
                   </div>
                 </li>
-                <li>
+                <li className="relative inline-block w-fit no-underline transition-all after:absolute 
+                after:bottom-0 after:left-[39px] after:w-[calc(100%-39px)] after:h-[2px] after:origin-bottom-right after:scale-x-0 after:rounded-lg
+                after:bg-gray-100 after:transition-transform after:duration-300 after:ease-in-out after:content-[''] hover:pl-2
+                hover:text-gray-100 hover:after:origin-bottom-left hover:after:scale-x-100">
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='1rem'
@@ -110,9 +110,7 @@ export function Footer() {
                     <polygon points='22 2 15 22 11 13 2 9 22 2'></polygon>
                   </svg>
                   <div className='inline-block pl-3 text-sm transition-all hover:pl-4 sm:text-sm'>
-                    <a href='#' className='hover:text-gray-400'>
-                      How to reach
-                    </a>
+                    <a href='../reachUs'>How to reach</a>
                   </div>
                 </li>
                 <div className='mb-2 mt-4 flex items-center justify-center gap-6 border-t-[1px] border-iip pt-4 sm:justify-start sm:pt-6'>
@@ -166,42 +164,27 @@ export function Footer() {
             <h3 className='mb-4 text-lg font-bold sm:text-xl'>Quick Links</h3>
             <ul className='lg:space-x-50 mb-4 flex flex-col gap-2'>
               <li className='text-sm text-gray-500 transition-all hover:px-1 hover:text-[#be6233] md:text-base lg:text-base'>
-                <a
-                  href='../prismatest'
-                  className='relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-0 after:bg-[#be6233] after:transition-all after:duration-300 hover:after:left-0 hover:after:w-full'
-                >
+                <a href='../prismatest' className='underline_custom'>
                   Online Fees Payment
                 </a>
               </li>
               <li className='text-sm text-gray-500 transition-all hover:px-1 hover:text-[#be6233] md:text-base lg:text-base'>
-                <a
-                  href='../prismatest/test2'
-                  className='relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-0 after:bg-[#be6233] after:transition-all after:duration-300 hover:after:left-0 hover:after:w-full'
-                >
+                <a href='../prismatest/test2' className='underline_custom'>
                   Academic Calendar
                 </a>
               </li>
               <li className='text-sm text-gray-500 transition-all hover:px-1 hover:text-[#be6233] md:text-base lg:text-base'>
-                <a
-                  href='#'
-                  className='relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-0 after:bg-[#be6233] after:transition-all after:duration-300 hover:after:left-0 hover:after:w-full'
-                >
+                <a href='#' className='underline_custom'>
                   Internships
                 </a>
               </li>
               <li className='text-sm text-gray-500 transition-all hover:px-1 hover:text-[#be6233] md:text-base lg:text-base'>
-                <a
-                  href='#'
-                  className='relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-0 after:bg-[#be6233] after:transition-all after:duration-300 hover:after:left-0 hover:after:w-full'
-                >
+                <a href='#' className='underline_custom'>
                   Annual Report
                 </a>
               </li>
-              <li className='text-sm text-gray-500 transition-all hover:px-1 hover:text-[#be6233] md:text-base lg:text-base'>
-                <a
-                  href='#'
-                  className='relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-0 after:bg-[#be6233] after:transition-all after:duration-300 hover:after:left-0 hover:after:w-full'
-                >
+              <li className='text-sm text-gray-500 transition-all hover:px-1 hover:text-iio/50 md:text-base lg:text-base'>
+                <a href='#' className='underline_custom'>
                   Accommodation
                 </a>
               </li>
@@ -239,10 +222,7 @@ export function Footer() {
             <span className='hidden px-2 sm:inline-block'>|</span>
             <br className='sm:hidden' />
             Crafted by{' '}
-            <a
-              href='#'
-              className='relative pb-0.5 text-[#f87e42] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-0 after:bg-[#be6233] after:transition-all after:duration-300 hover:after:left-0 hover:after:w-full'
-            >
+            <a href='#' className='underline_custom text-iio'>
               Students at IIITN
             </a>
           </p>

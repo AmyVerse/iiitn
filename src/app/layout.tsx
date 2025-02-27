@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { Inter, Mukta, Poppins } from 'next/font/google'
 import localFont from 'next/font/local'
 import { Footer } from './components/impSections/footer'
-import NavbarWrapper from './components/impSections/navBarWrapper'
+import Navbar from './components/impSections/navbar'
 import './globals.css'
 
 const poppins = Poppins({
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
   description: 'College website',
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
@@ -72,17 +72,16 @@ export default async function RootLayout({
   return (
     <html lang='en'>
       <body className={`${poppins.variable} ${makro.variable} ${inter.variable} ${mukta.variable}`}>
-        {/* ✅ Let the client component handle pathname */}
-        <NavbarWrapper />
-        <main className='flex-1'>{children}</main>
-        <Footer /> {/* Common Footer for all pages */}
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   )
 }
 
 //npx prettier --write .
-//npx prisma migrate dev --name initver
+//npx prisma migrate dev --name new
 
 //rm -rf node_modules package-lock.json
 // npm install

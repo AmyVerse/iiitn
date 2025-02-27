@@ -17,54 +17,18 @@
   }
 }
 
+@layer utilities {
+  .underline_custom {
+    @apply relative py-1.5 no-underline after:absolute after:bottom-1 after:left-0 after:h-[2px] after:w-full 
+    after:origin-bottom-right after:scale-x-0 after:rounded-lg after:bg-iio after:transition-transform after:duration-300 
+    after:ease-in-out after:content-[''] hover:text-iio hover:after:origin-bottom-left hover:after:scale-x-100;
+  }
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: var(--font-poppins);
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes fadeInOut {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-.animate-scrolling {
-  animation: scroll 20s linear infinite;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-.navbar-transition {
-  transition:
-    background-color 0.5s ease,
-    box-shadow 0.5s ease;
 }
 
 .font-inter {
@@ -73,11 +37,6 @@ html {
 
 .font-mukta {
   font-family: var(--font-mukta);
-}
-
-input::placeholder {
-  transition: all 0.1s ease-out;
-  animation: fadeInOut 0.7s ease-in-out;
 }
 
 @layer utilities {

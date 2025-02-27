@@ -37,7 +37,7 @@ export default function GallerySphere() {
   const prevSlide = () => setIndex((prev) => (prev - 1 + images.length) % images.length)
 
   return (
-    <div className='relative flex w-auto items-center gap-4 px-7 sm:ml-[40px] sm:gap-8 sm:border-l-2 sm:border-black sm:pl-24'>
+    <div className='relative z-10 flex w-auto items-center gap-4 px-7 sm:ml-[40px] sm:gap-8 sm:border-l-2 sm:border-black sm:pl-24'>
       {/* Image Slider Container */}
       <div className='relative flex flex-col items-center'>
         {/* Navigation Arrows */}

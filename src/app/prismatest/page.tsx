@@ -37,7 +37,7 @@ const LinksPage = () => {
     <Loader isLoading={loading}>
       <div className='flex h-[800px] flex-col items-center justify-center bg-gray-200 p-10'>
         <h1 className='mb-6 text-center text-4xl font-bold text-black'>Realtime fetching</h1>
-        <div className='flex flex-row gap-8 justify-between space-y-4'>
+        <div className='flex flex-row justify-between gap-8 space-y-4'>
           {links.length > 0 ? (
             links.map((link) => (
               <div
@@ -55,7 +55,7 @@ const LinksPage = () => {
                 <img
                   src={link.url}
                   alt={link.name}
-                  className='flex flex-row justify-center bg-black'
+                  className='flex flex-row bg-black'
                 />
               </div>
             ))

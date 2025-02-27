@@ -15,7 +15,7 @@ import {
   FiUsers,
   FiX,
 } from 'react-icons/fi'
-import { addProduct, deleteProduct, updateProduct } from '../api/actions/actions'
+import { addProduct, deleteProduct, updateProduct } from '../(api)/actions/actions'
 import Loader from '../components/loader'
 
 type Link = {
@@ -192,7 +192,7 @@ const Faculty = () => {
   return (
     <div className='rounded-lg bg-white p-6 shadow-md'>
       <h2 className='mb-4 text-2xl font-semibold text-black'>Links</h2>
-      <h6>https://picsum.photos/seed/picsum/200</h6>
+      <h6 className='text-black'>https://picsum.photos/seed/picsum/200</h6>
 
       {/* Buttons for adding a new entry */}
       <div className='mt-4 flex gap-3'>

@@ -1,6 +1,6 @@
 'use client'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IButton1 } from '../invertButton'
 
 interface MenuItem {
@@ -46,13 +46,28 @@ const lowerItems: LowerItem[] = [
   { label: 'About Us' },
 ]
 
-export default function Sidebar() {
-  const [isOpen, setIsOpen] = useState(false)
+interface SidebarProps {
+  isOpen: boolean
+  setIsOpenAction: (isOpen: boolean) => void
+}
+
+export default function Sidebar({ isOpen, setIsOpenAction }: SidebarProps) {
   const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({})
 
   const toggleMenu = (menu: string) => {
     setOpenMenus((prev) => ({ ...prev, [menu]: !prev[menu] }))
   }
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [isOpen])
 
   return (
     <div className='relative'>
@@ -65,14 +80,14 @@ export default function Sidebar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            onClick={() => setIsOpen(false)}
+            onClick={() => setIsOpenAction(false)}
           />
         )}
       </AnimatePresence>
 
       {/* Sidebar */}
       <motion.div
-        className='fixed right-0 top-0 z-50 h-screen w-[320px] overflow-y-scroll bg-[#472082] text-white shadow-lg sm:w-[480px] sm:p-5'
+        className='fixed right-0 top-0 z-40 h-screen w-[320px] overflow-y-scroll bg-[#472082] text-white shadow-lg sm:w-[480px] sm:p-5'
         initial={{ x: '100%' }}
         animate={{ x: isOpen ? '2%' : '100%' }}
         exit={{ x: '100%' }}
@@ -82,20 +97,8 @@ export default function Sidebar() {
           damping: 24, // Adjusted damping for a bouncier feel
         }}
       >
-        {/* Close Button */}
-        <button onClick={() => setIsOpen(false)} className='absolute right-10 top-6 p-2 text-white'>
-          <motion.div
-            className='relative h-6 w-6'
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <span className='absolute left-0 top-[11px] h-[2px] w-full rotate-45 bg-white' />
-            <span className='absolute left-0 top-[11px] h-[2px] w-full -rotate-45 bg-white' />
-          </motion.div>
-        </button>
-
         {/* Navigation */}
-        <nav className='mt-24 px-8'>
+        <nav className='mb-32 mt-24 px-8'>
           <ul className=''>
             <AnimatePresence>
               {menuItems.map((item, index) => (
@@ -105,16 +108,15 @@ export default function Sidebar() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ delay: index * 0.05 }}
-                  className='border-b-2 border-[#8440e4]/30'
                 >
                   <motion.button
                     onClick={() => toggleMenu(item.label)}
-                    whileHover={{ x: 6 }}
-                    transition={{ duration: 0.03, ease: 'easeInOut' }}
-                    className='group flex w-full items-center justify-between px-3 py-3 text-left capitalize transition-all duration-100 hover:bg-white/10'
+                    whileHover={{ paddingLeft: '22px' }}
+                    transition={{ duration: 0.04, ease: 'easeInOut' }}
+                    className='group flex w-full items-center justify-between border-b-2 border-[#8440e4]/30 px-3 py-3 text-left capitalize transition-all duration-100 hover:text-iio'
                   >
                     <span className='font-medium sm:text-lg'>{item.label}</span>
-                    <motion.span className='border-[1px] px-1.5'>
+                    <motion.span className='border-[1px] px-1.5 group-hover:border-iio'>
                       {openMenus[item.label] ? '-' : '+'}
                     </motion.span>
                   </motion.button>
@@ -127,19 +129,19 @@ export default function Sidebar() {
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className='mb-5 mt-1 overflow-hidden pl-6'
+                        className='overflow-hidden pb-5 pl-6 pt-1'
                       >
                         {item.subMenus?.map((subMenu) => (
-                          <motion.li
+                          <motion.button
                             key={subMenu}
                             initial={{ x: -10, opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: -10, opacity: 0 }}
                             transition={{ delay: 0.05 }}
-                            className='py-2 text-sm text-white/80 hover:text-white sm:text-sm'
+                            className='w-full py-2 text-left text-sm text-white/80 hover:text-iio sm:text-base'
                           >
                             {subMenu}
-                          </motion.li>
+                          </motion.button>
                         ))}
                       </motion.ul>
                     )}
@@ -148,7 +150,7 @@ export default function Sidebar() {
               ))}
             </AnimatePresence>
           </ul>
-          <ul className='mt-11'>
+          <ul className='mt-11 space-y-1'>
             <AnimatePresence>
               {lowerItems.map((item, index) => (
                 <motion.li
@@ -162,7 +164,7 @@ export default function Sidebar() {
                     onClick={() => toggleMenu(item.label)}
                     whileHover={{ x: 6 }}
                     transition={{ duration: 0.03, ease: 'easeInOut' }}
-                    className='group flex w-full items-center justify-between px-3 py-1.5 text-left capitalize text-white/70 transition-all duration-100 hover:text-white'
+                    className='group flex w-full items-center justify-between px-3 text-left capitalize text-white/70 transition-all duration-100 hover:text-white'
                   >
                     <span className='text-sm font-thin sm:text-base'>{item.label}</span>
                   </motion.button>
@@ -170,37 +172,20 @@ export default function Sidebar() {
               ))}
             </AnimatePresence>
           </ul>
-          <IButton1
-            onClick={() => (window.location.href = '../../login')}
-            className='mt-9 w-full border-white/10 font-normal text-white sm:w-full'
-            content='Login'
-            className1='bg-transparent'
-          />
-          <IButton1
-            onClick={() => setIsOpen(false)}
-            className='mt-2 w-full border-white/10 font-normal text-white sm:w-full'
-            content='CLOSE MENU'
-            className1='bg-transparent'
-          />
+          <div className='mt-12 h-44 space-y-3'>
+            <IButton1
+              onClick={() => (window.location.href = '../../login')}
+              className='w-full border-2 border-white bg-transparent font-normal text-white hover:bg-[#291249] sm:w-full'
+              content='Login'
+            />
+            <IButton1
+              onClick={() => setIsOpenAction(false)}
+              className='w-full border-white bg-iip font-normal text-white hover:bg-iio sm:w-full'
+              content='CLOSE MENU'
+            />
+          </div>
         </nav>
       </motion.div>
-
-      {/* Open Sidebar Button */}
-      <motion.button
-        onClick={() => setIsOpen(!isOpen)}
-        className='z-50 flex flex-col gap-[6px] p-2'
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <motion.div
-          className='flex flex-col gap-[6px]'
-          animate={isOpen ? { rotate: 180 } : { rotate: 0 }}
-        >
-          <span className='h-[2px] w-4 rounded-sm bg-white sm:h-[3px] sm:w-6' />
-          <span className='h-[2px] w-6 rounded-sm bg-white sm:h-[3px] sm:w-8' />
-          <span className='h-[2px] w-4 self-end rounded-sm bg-white sm:h-[3px] sm:w-6' />
-        </motion.div>
-      </motion.button>
     </div>
   )
 }
