@@ -15,7 +15,13 @@ datasource db {
 
 // schema.prisma
 
-model card {
+model Link{
+  id Int @id @default(autoincrement())
+  name String
+  url String
+}
+
+model Card {
   id      Int    @id @default(autoincrement())
   img_url String
   heading String
