@@ -44,11 +44,8 @@ export function Footer() {
                   Waranga, Butibori, Nagpur, Maharashtra - 441108
                 </div>
               </li>
-              <ul className='mb-5 flex flex-col gap-2 text-white/80'>
-                <li className="relative inline-block w-fit no-underline transition-all after:absolute 
-                after:bottom-0 after:left-[35px] after:w-[calc(100%-35px)] after:h-[2px] after:origin-bottom-right after:scale-x-0 after:rounded-lg
-                after:bg-gray-100 after:transition-transform after:duration-300 after:ease-in-out after:content-[''] hover:pl-2
-                hover:text-gray-100 hover:after:origin-bottom-left hover:after:scale-x-100">
+              <ul className='mb-5 flex flex-col gap-2 text-white/80 max-sm:items-center max-sm:justify-center'>
+                <li className="relative inline-block w-fit items-center no-underline transition-all after:absolute after:bottom-0 after:left-[35px] after:h-[2px] after:w-[calc(100%-35px)] after:origin-bottom-right after:scale-x-0 after:rounded-lg after:bg-gray-100 after:transition-transform after:duration-300 after:ease-in-out after:content-[''] hover:pl-2 hover:text-gray-100 hover:after:origin-bottom-left hover:after:scale-x-100">
                   <a href='tel:+919405215010'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
@@ -67,10 +64,7 @@ export function Footer() {
                     <div className='inline-block pl-3 text-sm transition-all sm:text-sm'>Phone</div>
                   </a>
                 </li>
-                <li className="relative inline-block w-fit  no-underline transition-all after:absolute 
-                after:bottom-0 after:left-[37px] after:w-[calc(100%-37px)] after:h-[2px] after:origin-bottom-right after:scale-x-0 after:rounded-lg
-                after:bg-gray-100 after:transition-transform after:duration-300 after:ease-in-out after:content-[''] hover:pl-2
-                hover:text-gray-100 hover:after:origin-bottom-left hover:after:scale-x-100">
+                <li className="relative inline-block w-fit no-underline transition-all after:absolute after:bottom-0 after:left-[37px] after:h-[2px] after:w-[calc(100%-37px)] after:origin-bottom-right after:scale-x-0 after:rounded-lg after:bg-gray-100 after:transition-transform after:duration-300 after:ease-in-out after:content-[''] hover:pl-2 hover:text-gray-100 hover:after:origin-bottom-left hover:after:scale-x-100">
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='1rem'
@@ -90,10 +84,7 @@ export function Footer() {
                     <a href='mailto:registrar@iiitn.ac.in'>E-mail</a>
                   </div>
                 </li>
-                <li className="relative inline-block w-fit no-underline transition-all after:absolute 
-                after:bottom-0 after:left-[39px] after:w-[calc(100%-39px)] after:h-[2px] after:origin-bottom-right after:scale-x-0 after:rounded-lg
-                after:bg-gray-100 after:transition-transform after:duration-300 after:ease-in-out after:content-[''] hover:pl-2
-                hover:text-gray-100 hover:after:origin-bottom-left hover:after:scale-x-100">
+                <li className="relative inline-block w-fit no-underline transition-all after:absolute after:bottom-0 after:left-[39px] after:h-[2px] after:w-[calc(100%-39px)] after:origin-bottom-right after:scale-x-0 after:rounded-lg after:bg-gray-100 after:transition-transform after:duration-300 after:ease-in-out after:content-[''] hover:pl-2 hover:text-gray-100 hover:after:origin-bottom-left hover:after:scale-x-100">
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='1rem'

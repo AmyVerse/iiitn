@@ -33,12 +33,17 @@ export default {
         '2xl': '1536px',
       },
       animation: {
+        ripple: 'ripple 0.7s ease-out',
         'horizontal-bounce': 'bounceX 1s infinite',
       },
       keyframes: {
         bounceX: {
           '0%, 100%': { transform: 'translateX(0%)' },
           '50%': { transform: 'translateX(5px)' },
+        },
+        ripple: {
+          '0%': { width: '0px', height: '0px', opacity: '0.6' },
+          '100%': { width: '400px', height: '400px', opacity: '0' },
         },
       },
       fontFamily: {

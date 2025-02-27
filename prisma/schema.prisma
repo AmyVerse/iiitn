@@ -9,8 +9,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
 }
 
 // schema.prisma
@@ -21,34 +21,86 @@ model Link {
   url  String
 }
 
-model Card {
-  id      Int    @id @default(autoincrement())
-  img_url String
-  heading String
-  desc    String
-  addinfo String
+model News {
+  id          Int      @id @default(autoincrement()) // Auto-incremented ID (Not UUID)
+  title       String // News title
+  description String // News description
+  content     String // URL of the news content
+  image       String // URL of the image
+  date        DateTime @default(now()) // Date of publication (Defaults to current time)
 }
 
-model FacultyImages {
-  id      Int      @id @default(autoincrement())
-  url     String // Cloudflare R2 URL to the uploaded image
-  Faculty Faculty?
+model Event {
+  id        Int      @id @default(autoincrement()) // Auto-incremented ID (Not UUID)
+  title     String // Event title
+  content   String // URL of the event content
+  image     String // URL of the image
+  eventdate DateTime // Date of Event(Defaults to current time)
+  postdate  DateTime @default(now()) // Date of Posting (Defaults to current time)
+}
+
+model Announcement {
+  id          Int      @id @default(autoincrement()) // Auto-incremented ID (Not UUID)
+  title       String // Announcement title
+  description String // Announcement description
+  content     String // URL of the announcement content
+  image       String // URL of the image
+  date        DateTime @default(now()) // Date of publication (Defaults to current time)
 }
 
 model Faculty {
-  id         Int           @id @default(autoincrement())
-  name       String
-  department String
-  email      String
-  phone      String
-  address    String
-  imageUrl   String // URL to the image stored in Vercel Blob
-  imageId    Int           @unique
-  image      FacultyImages @relation(fields: [imageId], references: [id]) // Reference image table
+  id           String   @id @default(uuid()) // Unique UUID for faculty ID
+  srno         Int      @default(autoincrement()) // Faculty serial number
+  name         String // Faculty name
+  image        String // Image URL
+  imageId      String   @default(uuid()) // Unique UUID for image ID
+  designation  String // Faculty designation (e.g., Professor, Assistant Professor)
+  department   String // Faculty department (e.g., Computer Science)
+  education    String // Education details (e.g., PhD in AI)
+  experience   String // Experience details (e.g., 10 years in research)
+  research     String? // Research interests (Optional field)
+  publications String? // Publications list (Optional field)
+  contact      Json // Contact details (e.g., email, phone)
+  others       Json? // Other details (e.g., office hours, personal website)
+  date         DateTime @default(now()) // Date of joining
 }
 
-model Link {
-  id   Int    @id @default(autoincrement())
-  name String
-  url  String
+model Governance {
+  id       String   @id @default(uuid()) // Unique UUID for governance ID
+  srno     Int      @default(autoincrement()) // Governance serial number
+  name     String // Governance title
+  position String // Governance position
+  Type     String // Governance type
+  content  String? // URL of the governance content
+  image    String // URL of the image
+  date     DateTime @default(now()) // Date of joining
+}
+
+model Student {
+  id      String @id @default(uuid()) // Unique UUID for student ID
+  srno    String // Student serial number
+  name    String // Student name
+  contact Json // Student contact details
+  image   String // URL of the image
+  course  String // Student course
+  others  Json? // Other details
+  date    Json // Date of admission and graduation
+}
+
+model Alumni {
+  id      String   @id @default(uuid()) // Unique UUID for alumni ID
+  srno    Int      @default(autoincrement()) // Alumni serial number
+  name    String // Alumni name
+  contact Json // Alumni contact details
+  email   String // Alumni email
+  image   String // URL of the image
+  date    DateTime @default(now()) // Date of joining
+  course  String // Alumni course
+}
+
+model Tenders {
+  id      Int      @id @default(autoincrement()) // Auto-incremented ID (Not UUID)
+  title   String // Tender title
+  content String // URL of the tender content
+  date    DateTime @default(now()) // Date of Tender (Defaults to current time)
 }

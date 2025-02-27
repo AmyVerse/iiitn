@@ -1,7 +1,7 @@
 'use client'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { IButton1 } from '../invertButton'
+import RButton from '../invertButton'
 
 interface MenuItem {
   label: string
@@ -129,7 +129,7 @@ export default function Sidebar({ isOpen, setIsOpenAction }: SidebarProps) {
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className='overflow-hidden pb-5 pl-6 pt-1'
+                        className='overflow-hidden pl-6'
                       >
                         {item.subMenus?.map((subMenu) => (
                           <motion.button
@@ -173,14 +173,14 @@ export default function Sidebar({ isOpen, setIsOpenAction }: SidebarProps) {
             </AnimatePresence>
           </ul>
           <div className='mt-12 h-44 space-y-3'>
-            <IButton1
+            <RButton
               onClick={() => (window.location.href = '../../login')}
               className='w-full border-2 border-white bg-transparent font-normal text-white hover:bg-[#291249] sm:w-full'
               content='Login'
             />
-            <IButton1
+            <RButton
               onClick={() => setIsOpenAction(false)}
-              className='w-full border-white bg-iip font-normal text-white hover:bg-iio sm:w-full'
+              className='w-full border-white bg-transparent font-normal text-white hover:bg-iio sm:w-full'
               content='CLOSE MENU'
             />
           </div>

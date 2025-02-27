@@ -52,11 +52,7 @@ const LinksPage = () => {
                 >
                   {link.name}
                 </a>
-                <img
-                  src={link.url}
-                  alt={link.name}
-                  className='flex flex-row bg-black'
-                />
+                <img src={link.url} alt={link.name} className='flex flex-row bg-black' />
               </div>
             ))
           ) : (

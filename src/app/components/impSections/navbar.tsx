@@ -37,14 +37,16 @@ export default function Navbar() {
         <Link
           target='_blank'
           href='https://forms.gle/FSBg4Bb2SJEpHTux9'
-          className='ml-1 text-orange-400 underline'
+          className='ml-1 font-[600] text-[#D4AFFF] underline'
         >
           Submit the request.
         </Link>
       </div>
       <div className='h-0.5 w-full bg-iio'></div>
       <div
-        className={`flex w-full items-center justify-between px-5 py-1 shadow-lg transition-colors duration-300 ease-in-out sm:px-8 ${path !== '/' || isScrolled ? 'bg-white' : 'bg-gradient-to-b from-black via-black/50 via-70% to-transparent'}`}
+        className={`flex w-full items-center justify-between px-5 py-1 shadow-lg transition-colors duration-300 ease-in-out sm:px-8 ${
+          path !== '/' || isScrolled ? 'bg-white' : 'bg-black/40'
+        }`}
       >
         <div className='flex w-32 items-center'>
           <Link target='_self' href='http://iiitn-beta.vercel.app'>
@@ -60,7 +62,8 @@ export default function Navbar() {
             <Image className='block sm:hidden' src={icon} alt='IIITN Logo' width={45} height={50} />
           </Link>
         </div>
-        <div className='flex items-center gap-6 text-xl text-black sm:gap-8'>
+
+        <div className='hidden items-center gap-6 text-xl text-black sm:flex sm:gap-8'>
           {(path !== '/' || isScrolled) && (
             <>
               {['About', 'Academics', 'Admission', 'Updates', 'Contact'].map((item) => (
@@ -78,7 +81,7 @@ export default function Navbar() {
             </>
           )}
         </div>
-        <div className='flex w-32 items-center gap-12 sm:gap-8'>
+        <div className='flex items-center gap-8 sm:w-32 sm:gap-8'>
           <button
             onClick={() => setIsSearchOpen(true)}
             className='transition-all duration-100 hover:scale-110'
@@ -92,9 +95,9 @@ export default function Navbar() {
             />
             <Image
               className='block sm:hidden'
-              src='/search.svg'
+              src={path !== '/' || isScrolled ? '/image.png' : '/search.svg'}
               alt='Search Icon'
-              width={29}
+              width={30}
               height={20}
             />
           </button>
@@ -105,17 +108,17 @@ export default function Navbar() {
             whileTap={{ scale: 0.95 }}
           >
             <motion.div
-              className='flex flex-col gap-[6px]'
+              className={`flex flex-col gap-[6px] ${isSidebarOpen ? '-ml-6 rounded-xl bg-iio px-1 py-2' : ''}`}
               animate={isSidebarOpen ? { rotate: 90 } : { rotate: 0 }}
             >
               <span
-                className={`h-[2px] w-6 rounded-sm transition-transform duration-300 ${path !== '/' || isScrolled ? 'bg-black' : 'bg-white'} sm:h-[3px] sm:w-8 ${isSidebarOpen ? 'translate-y-[9px] rotate-45 bg-white' : ''}`}
+                className={`h-[2px] w-6 rounded-sm transition-transform duration-300 ${path !== '/' || isScrolled ? 'bg-black' : 'bg-white shadow-[0_0_5px_rgba(255,255,255,0.7)]'} sm:h-[3px] sm:w-8 ${isSidebarOpen ? 'translate-y-[9px] rotate-45 bg-white' : ''}`}
               />
               <span
-                className={`h-[2px] w-6 rounded-sm transition-opacity duration-300 ${path !== '/' || isScrolled ? 'bg-black' : 'bg-white'} sm:h-[3px] sm:w-8 ${isSidebarOpen ? 'opacity-0' : ''}`}
+                className={`h-[2px] w-6 rounded-sm transition-opacity duration-300 ${path !== '/' || isScrolled ? 'bg-black' : 'bg-white shadow-[0_0_5px_rgba(255,255,255,0.7)]'} sm:h-[3px] sm:w-8 ${isSidebarOpen ? 'opacity-0' : ''}`}
               />
               <span
-                className={`h-[2px] w-6 self-end rounded-sm transition-transform duration-300 ${path !== '/' || isScrolled ? 'bg-black' : 'bg-white'} sm:h-[3px] sm:w-8 ${isSidebarOpen ? '-translate-y-[9px] -rotate-45 bg-white' : ''}`}
+                className={`h-[2px] w-6 self-end rounded-sm transition-transform duration-300 ${path !== '/' || isScrolled ? 'bg-black' : 'bg-white shadow-[0_0_5px_rgba(255,255,255,0.7)]'} sm:h-[3px] sm:w-8 ${isSidebarOpen ? '-translate-y-[9px] -rotate-45 bg-white' : ''}`}
               />
             </motion.div>
           </motion.button>

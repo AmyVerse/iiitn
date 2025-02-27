@@ -1,23 +1,37 @@
 'use client'
+import { useState } from 'react'
 
-interface IButtonProps {
-  onClick: Function
+interface RButton {
+  onClick?: Function
   content: string
   className?: string
 }
 
-const IButton1: React.FC<IButtonProps> = ({ content, className, onClick }) => {
+export default function RButton({ content, className, onClick }: RButton) {
+  const [coords, setCoords] = useState({ x: 0, y: 0 })
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    setCoords({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    })
+  }
+
   return (
-    <button
-      onClick={() => onClick()}
-      className={`w-30 relative flex items-center justify-center 
-        overflow-hidden rounded-[8px] bg-[#d96027] px-6 py-3 text-center font-[poppins] text-[15px] font-semibold
-        text-white transition-all duration-200 ease-in-out hover:bg-[#ff9c6e] sm:w-52 sm:rounded-2xl sm:text-[20px] ${className}`}
-    >
-      {/* Button Text */}
-      <span className='relative'>{content}</span>
-    </button>
+    <div className=''>
+      <button
+        onMouseEnter={handleMouseEnter}
+        onClick={() => onClick && onClick()}
+        className={`ripple relative z-10 w-48 overflow-hidden rounded-2xl border-2 border-iio bg-iio px-6 py-3 text-white hover:border-2 hover:border-iio hover:bg-transparent ${className}`}
+      >
+        {/* Ripple Effect */}
+        {/* <span
+          className='absolute h-0 w-0 rounded-full bg-red-600 opacity-50 transition-all duration-500 group-hover:h-[400px] group-hover:w-[400px]'
+          style={{ top: coords.y, left: coords.x, transform: 'translate(-50%, -50%)' }}
+        /> */}
+        <span className='relative text-xl font-bold'>{content}</span>
+      </button>
+    </div>
   )
 }
-
-export { IButton1 }

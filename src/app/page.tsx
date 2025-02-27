@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { CardSliderOn, CardSliderUP } from './components/eventsCard'
 import GalleryCarousel from './components/galleryCarousel'
 import GallerySphere from './components/gallerySphere'
-import { IButton1 } from './components/invertButton'
+import RButton from './components/invertButton'
 import AppleGrid from './components/spotlightCarousel'
 
 export default function Home() {
@@ -13,8 +13,8 @@ export default function Home() {
   return (
     <div className='relative'>
       {/* Fixed Background */}
-      <div className="absolute -top-20 left-0 z-[-2] h-screen w-full bg-[url('/campus.png')] bg-cover bg-center" /> {/* top minus margin taaki bg upr aaye*/}
-
+      <div className="absolute -top-20 left-0 z-[-2] h-screen w-full bg-[url('/campus.png')] bg-cover bg-center" />{' '}
+      {/* top minus margin taaki bg upr aaye*/}
       {/* First Viewport (Header Section) */}
       <section
         className={`relative z-10 flex h-[calc(100vh-140px)] flex-col items-center justify-center transition-all duration-500 sm:h-[calc(100vh-98px)]`}
@@ -29,13 +29,18 @@ export default function Home() {
 
         {/* Buttons */}
         <div className='relative mt-24 grid grid-cols-2 gap-4 px-4 sm:mt-52 sm:flex sm:grid-cols-1 sm:justify-center sm:gap-28'>
-          <IButton1 content='ABOUT US' onClick={() => window.open('#about', '_self')} />
-          <IButton1 content='ACADEMICS' onClick={() => window.open('/academics', '_self')} />
-          <IButton1 content='ADMISSION' onClick={() => window.open('#ad', '_self')} />
-          <IButton1 content='UPDATES' onClick={() => window.open('../prismatest', '_self')} />
+          <RButton
+            content='ABOUT US'
+            onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+          />
+          <RButton content='ACADEMICS' onClick={() => window.open('/academics', '_self')} />
+          <RButton
+            content='ADMISSION'
+            onClick={() => document.getElementById('ad')?.scrollIntoView({ behavior: 'smooth' })}
+          />
+          <RButton content='UPDATES' onClick={() => window.open('../prismatest', '_self')} />
         </div>
       </section>
-
       {/* New Content Section */}
       <section className="relative flex aspect-[1708/517] flex-col bg-[url('/blockbg.png')] bg-center">
         {/* About Section */}
@@ -57,7 +62,11 @@ export default function Home() {
             real-world impact.
           </div>
           <div>
-            <IButton1 content='Learn More' onClick={() => window.open('/about', '_self')} />
+            <RButton
+              className='bg-black hover:text-iio'
+              content='Learn More'
+              onClick={() => window.open('/about', '_self')}
+            />
           </div>
         </div>
 
@@ -116,7 +125,7 @@ export default function Home() {
             (ECE) are conducted through JoSAA, starting in August.
           </div>
           <div>
-            <IButton1
+            <RButton
               content='Apply'
               className='mt-2'
               onClick={() => window.open('/admission', '_self')}
@@ -138,9 +147,9 @@ export default function Home() {
             domains, fostering a culture of curiosity and discovery.
           </div>
           <div>
-            <IButton1
+            <RButton
               content='Know more'
-              className='mt-2 text-iio border-iio'
+              className='mt-2 border-iio text-iio'
               onClick={() => window.open('/about', '_self')}
             />
           </div>

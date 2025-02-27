@@ -19,9 +19,7 @@
 
 @layer utilities {
   .underline_custom {
-    @apply relative py-1.5 no-underline after:absolute after:bottom-1 after:left-0 after:h-[2px] after:w-full 
-    after:origin-bottom-right after:scale-x-0 after:rounded-lg after:bg-iio after:transition-transform after:duration-300 
-    after:ease-in-out after:content-[''] hover:text-iio hover:after:origin-bottom-left hover:after:scale-x-100;
+    @apply relative py-1.5 no-underline after:absolute after:bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:rounded-lg after:bg-iio after:transition-transform after:duration-300 after:ease-in-out after:content-[''] hover:text-iio hover:after:origin-bottom-left hover:after:scale-x-100;
   }
 }
 
@@ -43,4 +41,21 @@ body {
   .cursor-cross {
     cursor: url('../../public/cursor.svg'), auto;
   }
+}
+
+@keyframes ripple {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 0.6;
+  }
+  100% {
+    width: 400px;
+    height: 400px;
+    opacity: 0;
+  }
+}
+
+.animate-ripple {
+  animation: ripple 0.7s ease-out;
 }

@@ -1,15 +1,15 @@
-import { GetServerSideProps } from 'next';
-import prisma from '../../lib/prisma'; // Import Prisma client
-import Image from 'next/image';
+import { GetServerSideProps } from 'next'
+import Image from 'next/image'
+import prisma from '../../lib/prisma' // Import Prisma client
 
 // Define the type for the fetched data
 type ImageData = {
-  name: string;
-  url: string;
-};
+  name: string
+  url: string
+}
 
 interface PageProps {
-  imageData: ImageData;
+  imageData: ImageData
 }
 
 const Page = ({ imageData }: PageProps) => {
@@ -19,23 +19,23 @@ const Page = ({ imageData }: PageProps) => {
       <div style={{ maxWidth: '600px', margin: '0 auto' }}>
         <Image
           src={imageData.url}
-          alt="Fetched image"
+          alt='Fetched image'
           width={600}
           height={400}
-          layout="responsive"
+          layout='responsive'
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
     // Fetch data from the Prisma database connected to Supabase
-    const image = await prisma.link.findFirst();
+    const image = await prisma.link.findFirst()
 
     if (!image) {
-      return { notFound: true }; // If no image found
+      return { notFound: true } // If no image found
     }
 
     return {
@@ -45,9 +45,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
           url: image.url,
         },
       },
-    };
+    }
   } catch (error) {
-    console.error(error);
+    console.error(error)
     return {
       props: {
         imageData: {
@@ -55,8 +55,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
           url: '',
         },
       },
-    };
+    }
   }
-};
+}
 
-export default Page;
+export default Page
