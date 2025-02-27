@@ -15,10 +15,10 @@ datasource db {
 
 // schema.prisma
 
-model Link{
-  id Int @id @default(autoincrement())
+model Link {
+  id   Int    @id @default(autoincrement())
   name String
-  url String
+  url  String
 }
 
 model Card {
