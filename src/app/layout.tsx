@@ -1,22 +1,29 @@
 import { Metadata } from 'next'
-import { Inter, Mukta, Poppins } from 'next/font/google'
+import { Inter, Mukta, Poppins, Roboto } from 'next/font/google'
 import localFont from 'next/font/local'
-import { Footer } from './components/impSections/footer'
-import Navbar from './components/impSections/navbar'
+import { Footer } from '../components/impSections/footer'
+import Navbar from '../components/impSections/navbar'
 import './globals.css'
 
 const poppins = Poppins({
   variable: '--font-poppins',
   subsets: ['latin'],
-  weight: '400',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 })
 
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
 })
+
 const mukta = Mukta({
   variable: '--font-mukta',
+  subsets: ['latin'],
+  weight: ['200', '300', '400', '500', '600', '700', '800'],
+})
+
+const roboto = Roboto({
+  variable: '--font-roboto',
   subsets: ['latin'],
   weight: '400',
 })
@@ -59,6 +66,13 @@ const makro = localFont({
   display: 'swap',
 })
 
+const funnel = localFont({
+  src: '../../public/font/FunnelSans[wght].woff2',
+  variable: '--font-funnel',
+  weight: '300 800', // Define weight range
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   title: 'IIIT Nagpur',
   description: 'College website',
@@ -71,7 +85,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${poppins.variable} ${makro.variable} ${inter.variable} ${mukta.variable}`}>
+      <body
+        className={`${funnel.variable} ${poppins.variable} ${makro.variable} ${inter.variable} ${mukta.variable} ${roboto.variable}`}
+      >
         <Navbar />
         <main>{children}</main>
         <Footer />

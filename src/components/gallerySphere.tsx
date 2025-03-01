@@ -37,13 +37,14 @@ export default function GallerySphere() {
   const prevSlide = () => setIndex((prev) => (prev - 1 + images.length) % images.length)
 
   return (
-    <div className='relative z-10 flex w-auto items-center gap-4 px-7 sm:ml-[40px] sm:gap-8 sm:border-l-2 sm:border-black sm:pl-24'>
+    <div className='relative z-10 flex w-auto flex-col items-center gap-4 sm:flex-row'>
       {/* Image Slider Container */}
-      <div className='relative flex flex-col items-center'>
+      <div className='relative flex items-center sm:flex-col'>
+
         {/* Navigation Arrows */}
-        <button onClick={prevSlide} className='text-black sm:-mt-7'>
+        <button onClick={prevSlide} className='text-black'>
           <svg
-            className='mb-5 h-8 rotate-180 sm:h-12 sm:w-12'
+            className='mb-3 max-sm:mr-2 h-8 sm:rotate-180 rotate-90 sm:h-12 sm:w-12'
             fill='none'
             stroke='currentColor'
             viewBox='0 0 24 24'
@@ -59,27 +60,27 @@ export default function GallerySphere() {
         </button>
 
         {/* Image Slider */}
-        <div className='relative h-[400px] w-[250px] overflow-hidden rounded-xl shadow-lg sm:h-[560px] sm:w-[300px]'>
+        <div className='relative h-[370px] w-[225px] overflow-hidden rounded-xl shadow-lg sm:h-[560px] sm:w-[300px]'>
           {images.map((image, i) => (
             <motion.div
               key={i}
               className='absolute h-full w-full'
-              initial={{ opacity: 0, y: -50 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={index === i ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               exit={{ opacity: 0, y: -50 }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
             >
               {index === i && <div ref={viewerRef} className='h-full w-full'></div>}
-              <div className='absolute bottom-4 left-4 rounded-lg bg-black/60 px-3 py-1 text-white'>
+              <div className='absolute bottom-12 right-2 rounded-lg bg-black/60 px-3 py-1 text-white'>
                 {image.title}
               </div>
             </motion.div>
           ))}
         </div>
 
-        <button onClick={nextSlide} className='-mb-7 text-black'>
+        <button onClick={nextSlide} className='text-black'>
           <svg
-            className='mt-5 h-8 sm:h-12 sm:w-12'
+            className='mt-3 max-sm:ml-2 h-8 max-sm:-translate-y-3 sm:rotate-0 -rotate-90 sm:h-12 sm:w-12'
             fill='none'
             stroke='currentColor'
             viewBox='0 0 24 24'
@@ -96,11 +97,12 @@ export default function GallerySphere() {
       </div>
 
       {/* Number Circle Tracker (Right Side) */}
-      <div className='flex flex-col items-center gap-4'>
+      <div className='flex max-sm:h-10 items-center gap-4 sm:flex-col'>
         {images.map((_, i) => (
           <div
             key={i}
-            className={`flex content-center items-center justify-center rounded-full border text-center transition-all duration-300 ${
+            onClick={() => setIndex(i)}
+            className={`flex cursor-pointer content-center items-center justify-center rounded-full border text-center transition-all duration-300 ${
               index === i
                 ? 'h-9 w-9 bg-white text-lg text-black outline outline-black'
                 : 'h-6 w-6 bg-black text-sm text-white'

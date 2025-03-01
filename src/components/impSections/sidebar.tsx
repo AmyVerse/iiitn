@@ -1,4 +1,5 @@
 'use client'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import RButton from '../invertButton'
@@ -52,6 +53,20 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ isOpen, setIsOpenAction }: SidebarProps) {
+  // Auth state
+  const [user, setUser] = useState<any>(null)
+  const supabase = createClientComponentClient()
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser()
+      setUser(user) // ✅ Store user in state
+    }
+    checkUser()
+  }, [])
+
   const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({})
 
   const toggleMenu = (menu: string) => {
@@ -87,7 +102,7 @@ export default function Sidebar({ isOpen, setIsOpenAction }: SidebarProps) {
 
       {/* Sidebar */}
       <motion.div
-        className='fixed right-0 top-0 z-40 h-screen w-[320px] overflow-y-scroll bg-[#472082] text-white shadow-lg sm:w-[480px] sm:p-5'
+        className='fixed right-0 top-0 z-40 h-screen w-[320px] overflow-y-scroll bg-[#472082] text-white shadow-lg sm:w-[500px] sm:p-8 sm:pr-11'
         initial={{ x: '100%' }}
         animate={{ x: isOpen ? '2%' : '100%' }}
         exit={{ x: '100%' }}
@@ -98,7 +113,7 @@ export default function Sidebar({ isOpen, setIsOpenAction }: SidebarProps) {
         }}
       >
         {/* Navigation */}
-        <nav className='mb-32 mt-24 px-8'>
+        <nav className='mb-32 mt-20 px-6'>
           <ul className=''>
             <AnimatePresence>
               {menuItems.map((item, index) => (
@@ -115,7 +130,7 @@ export default function Sidebar({ isOpen, setIsOpenAction }: SidebarProps) {
                     transition={{ duration: 0.04, ease: 'easeInOut' }}
                     className='group flex w-full items-center justify-between border-b-2 border-[#8440e4]/30 px-3 py-3 text-left capitalize transition-all duration-100 hover:text-iio'
                   >
-                    <span className='font-medium sm:text-lg'>{item.label}</span>
+                    <span className='font-[poppins] font-normal sm:text-lg'>{item.label}</span>
                     <motion.span className='border-[1px] px-1.5 group-hover:border-iio'>
                       {openMenus[item.label] ? '-' : '+'}
                     </motion.span>
@@ -138,7 +153,7 @@ export default function Sidebar({ isOpen, setIsOpenAction }: SidebarProps) {
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: -10, opacity: 0 }}
                             transition={{ delay: 0.05 }}
-                            className='w-full py-2 text-left text-sm text-white/80 hover:text-iio sm:text-base'
+                            className='w-full py-2 text-left font-[poppins] text-sm font-light text-white/80 hover:text-iio sm:text-base'
                           >
                             {subMenu}
                           </motion.button>
@@ -150,7 +165,7 @@ export default function Sidebar({ isOpen, setIsOpenAction }: SidebarProps) {
               ))}
             </AnimatePresence>
           </ul>
-          <ul className='mt-11 space-y-1'>
+          <ul className='mt-8 space-y-1'>
             <AnimatePresence>
               {lowerItems.map((item, index) => (
                 <motion.li
@@ -166,22 +181,26 @@ export default function Sidebar({ isOpen, setIsOpenAction }: SidebarProps) {
                     transition={{ duration: 0.03, ease: 'easeInOut' }}
                     className='group flex w-full items-center justify-between px-3 text-left capitalize text-white/70 transition-all duration-100 hover:text-white'
                   >
-                    <span className='text-sm font-thin sm:text-base'>{item.label}</span>
+                    <span className='font-[poppins] text-sm font-light sm:text-base'>
+                      {item.label}
+                    </span>
                   </motion.button>
                 </motion.li>
               ))}
             </AnimatePresence>
           </ul>
-          <div className='mt-12 h-44 space-y-3'>
+          <div className='mt-12 mb-10 flex flex-col items-center justify-start space-y-2 sm:space-y-3'>
             <RButton
-              onClick={() => (window.location.href = '../../login')}
-              className='w-full border-2 border-white bg-transparent font-normal text-white hover:bg-[#291249] sm:w-full'
-              content='Login'
+              onClick={() => (window.location.href = '../../admin')}
+              rippleColor='#291249'
+              className='w-52 rounded-xl border border-white px-4 py-2 font-[poppins] text-lg font-normal sm:w-72 sm:py-2.5 sm:text-xl'
+              content={user ? 'Go to Dashboard' : 'Login'}
             />
             <RButton
               onClick={() => setIsOpenAction(false)}
-              className='w-full border-white bg-transparent font-normal text-white hover:bg-iio sm:w-full'
-              content='CLOSE MENU'
+              rippleColor='#291249'
+              className='w-52 rounded-xl border border-white px-4 py-2 font-[poppins] text-lg font-normal sm:w-72 sm:py-2.5 sm:text-xl'
+              content='Close Menu'
             />
           </div>
         </nav>

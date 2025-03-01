@@ -20,10 +20,14 @@ export default {
         '2/10': '22%',
       },
       colors: {
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
-        iip: '#393086',
-        iio: '#CF5A24',
+        iip: '#393086', // Deep blue-purple
+        iio: '#CF5A24', // Burnt orange
+        nude: '#E8DCCB', // Soft nude beige
+        sand: '#C4B6A3', // Muted sand
+        taupe: '#8E8372', // Soft taupe
+        graphite: '#2A2A2A', // Dark graphite
+        offwhite: '#F5F4EF', // Off-white
+        ash: '#B8B5B0', // Ash gray
       },
       screens: {
         tablet: '640px',
@@ -45,9 +49,6 @@ export default {
           '0%': { width: '0px', height: '0px', opacity: '0.6' },
           '100%': { width: '400px', height: '400px', opacity: '0' },
         },
-      },
-      fontFamily: {
-        makro: ['var(--font-makro)'],
       },
     },
   },

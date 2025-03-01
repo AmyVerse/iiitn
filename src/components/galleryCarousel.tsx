@@ -57,9 +57,9 @@ const images = [
   },
 ]
 
-export default function AppleGrid() {
+export default function GalleryCarousel() {
   return (
-    <div className='grid h-[360px] grid-cols-12 grid-rows-5 gap-3 sm:h-[560px]'>
+    <div className='grid h-[360px] grid-cols-12 grid-rows-5 gap-2 sm:gap-3 sm:h-[580px]'>
       {images.map((image, index) => (
         <motion.div
           key={index}

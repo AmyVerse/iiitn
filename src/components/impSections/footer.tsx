@@ -1,6 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState } from 'react'
 
 const socialLinks = [
@@ -32,7 +33,7 @@ export function Footer() {
           <img
             src='/loader.gif'
             alt='IIITN Logo'
-            className='absolute -top-[58px] left-3 h-20 w-20 sm:-top-20 sm:left-12 sm:h-28 sm:w-28'
+            className='absolute -top-[53px] left-5 h-16 w-16 sm:-top-20 sm:left-12 sm:h-28 sm:w-28'
           />
 
           {/* logo div */}
@@ -218,6 +219,16 @@ export function Footer() {
             </a>
           </p>
         </div>
+        <div className='flex w-full flex-row justify-center text-wrap bg-[#281246] px-3 py-1 text-xs text-white sm:text-sm'>
+        <span>Any incorrect/missing info?</span>
+        <Link
+          target='_blank'
+          href='https://forms.gle/FSBg4Bb2SJEpHTux9'
+          className='ml-1 font-[600] text-[#D4AFFF] underline'
+        >
+          Submit the request.
+        </Link>
+      </div>
       </footer>
     </div>
   )

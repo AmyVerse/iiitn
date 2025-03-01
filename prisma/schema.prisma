@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,9 +5,8 @@ generator client {
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
-
-// schema.prisma
 
 model Link {
   id   Int    @id @default(autoincrement())
@@ -21,86 +14,84 @@ model Link {
   url  String
 }
 
-model News {
-  id          Int      @id @default(autoincrement()) // Auto-incremented ID (Not UUID)
-  title       String // News title
-  description String // News description
-  content     String // URL of the news content
-  image       String // URL of the image
-  date        DateTime @default(now()) // Date of publication (Defaults to current time)
+model Spotlight {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  content     String?
+  image       String?
+  date        DateTime @default(now())
 }
 
 model Event {
-  id        Int      @id @default(autoincrement()) // Auto-incremented ID (Not UUID)
-  title     String // Event title
-  content   String // URL of the event content
-  image     String // URL of the image
-  eventdate DateTime // Date of Event(Defaults to current time)
-  postdate  DateTime @default(now()) // Date of Posting (Defaults to current time)
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  image     String
+  eventdate DateTime
+  postdate  DateTime @default(now())
 }
 
 model Announcement {
-  id          Int      @id @default(autoincrement()) // Auto-incremented ID (Not UUID)
-  title       String // Announcement title
-  description String // Announcement description
-  content     String // URL of the announcement content
-  image       String // URL of the image
-  date        DateTime @default(now()) // Date of publication (Defaults to current time)
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  content     String
+  image       String
+  date        DateTime @default(now())
 }
 
 model Faculty {
-  id           String   @id @default(uuid()) // Unique UUID for faculty ID
-  srno         Int      @default(autoincrement()) // Faculty serial number
-  name         String // Faculty name
-  image        String // Image URL
-  imageId      String   @default(uuid()) // Unique UUID for image ID
-  designation  String // Faculty designation (e.g., Professor, Assistant Professor)
-  department   String // Faculty department (e.g., Computer Science)
-  education    String // Education details (e.g., PhD in AI)
-  experience   String // Experience details (e.g., 10 years in research)
-  research     String? // Research interests (Optional field)
-  publications String? // Publications list (Optional field)
-  contact      Json // Contact details (e.g., email, phone)
-  others       Json? // Other details (e.g., office hours, personal website)
-  date         DateTime @default(now()) // Date of joining
+  id           String   @id @default(uuid())
+  name         String
+  department   String
+  contact      Json?
+  date         DateTime @default(now())
+  designation  String
+  education    String?
+  experience   String?
+  image        String?
+  others       Json?
+  publications String?
+  research     String?
 }
 
 model Governance {
-  id       String   @id @default(uuid()) // Unique UUID for governance ID
-  srno     Int      @default(autoincrement()) // Governance serial number
-  name     String // Governance title
-  position String // Governance position
-  Type     String // Governance type
-  content  String? // URL of the governance content
-  image    String // URL of the image
-  date     DateTime @default(now()) // Date of joining
+  id       String   @id @default(uuid())
+  srno     Int      @default(autoincrement())
+  name     String
+  position String
+  Type     String
+  content  String?
+  image    String
+  date     DateTime @default(now())
 }
 
 model Student {
-  id      String @id @default(uuid()) // Unique UUID for student ID
-  srno    String // Student serial number
-  name    String // Student name
-  contact Json // Student contact details
-  image   String // URL of the image
-  course  String // Student course
-  others  Json? // Other details
-  date    Json // Date of admission and graduation
+  id      String @id @default(uuid())
+  srno    String
+  name    String
+  contact Json
+  image   String
+  course  String
+  others  Json?
+  date    Json
 }
 
 model Alumni {
-  id      String   @id @default(uuid()) // Unique UUID for alumni ID
-  srno    Int      @default(autoincrement()) // Alumni serial number
-  name    String // Alumni name
-  contact Json // Alumni contact details
-  email   String // Alumni email
-  image   String // URL of the image
-  date    DateTime @default(now()) // Date of joining
-  course  String // Alumni course
+  id      String   @id @default(uuid())
+  srno    Int      @default(autoincrement())
+  name    String
+  contact Json
+  email   String
+  image   String
+  date    DateTime @default(now())
+  course  String
 }
 
 model Tenders {
-  id      Int      @id @default(autoincrement()) // Auto-incremented ID (Not UUID)
-  title   String // Tender title
-  content String // URL of the tender content
-  date    DateTime @default(now()) // Date of Tender (Defaults to current time)
+  id      Int      @id @default(autoincrement())
+  title   String
+  content String
+  date    DateTime @default(now())
 }

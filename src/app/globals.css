@@ -5,9 +5,6 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --font-poppins: 'Poppins', sans-serif;
-  --font-inter: 'Inter', sans-serif;
-  --font-mukta: 'Mukta', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,22 +16,12 @@
 
 @layer utilities {
   .underline_custom {
-    @apply relative py-1.5 no-underline after:absolute after:bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:rounded-lg after:bg-iio after:transition-transform after:duration-300 after:ease-in-out after:content-[''] hover:text-iio hover:after:origin-bottom-left hover:after:scale-x-100;
+    @apply relative py-1 no-underline after:absolute after:bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:rounded-lg after:bg-iio after:transition-transform after:duration-300 after:ease-in-out after:content-[''] hover:text-iio hover:after:origin-bottom-left hover:after:scale-x-100;
   }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-poppins);
-}
-
-.font-inter {
-  font-family: var(--font-inter);
-}
-
-.font-mukta {
-  font-family: var(--font-mukta);
+  font-family: var(--font-funnel), sans-serif;
 }
 
 @layer utilities {
@@ -44,16 +31,42 @@ body {
 }
 
 @keyframes ripple {
-  0% {
-    width: 0px;
-    height: 0px;
-    opacity: 0.6;
+  from {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
   }
-  100% {
-    width: 400px;
-    height: 400px;
+  to {
+    width: 300px;
+    height: 300px;
     opacity: 0;
   }
+}
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::before {
+  content: '';
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  width: 0;
+  height: 0;
+  background: var(--ripple-color, #cf5a24); /* Default color if not set */
+  z-index: -10;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.7s,
+    height 0.7s;
+}
+
+.ripple:hover::before {
+  width: 700px;
+  height: 500px;
 }
 
 .animate-ripple {

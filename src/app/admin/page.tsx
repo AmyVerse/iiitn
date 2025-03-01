@@ -15,8 +15,8 @@ import {
   FiUsers,
   FiX,
 } from 'react-icons/fi'
-import { addProduct, deleteProduct, updateProduct } from '../(api)/actions/actions'
-import Loader from '../components/loader'
+import Loader from '../../components/loader'
+import { addProduct, deleteProduct, updateProduct } from '../api/link/actions'
 
 type Link = {
   id: number

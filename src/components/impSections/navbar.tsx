@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useLayoutEffect, useState } from 'react'
-import icon from '../../../../public/logo.svg'
 import Sidebar from './sidebar'
 
 export default function Navbar() {
@@ -32,38 +31,51 @@ export default function Navbar() {
 
   return (
     <div className='sticky top-0 z-50 w-full'>
-      <div className='flex w-full flex-row justify-center text-wrap bg-[#281246] px-3 py-1 text-xs sm:text-sm'>
-        <span>Any incorrect/missing info?</span>
-        <Link
-          target='_blank'
-          href='https://forms.gle/FSBg4Bb2SJEpHTux9'
-          className='ml-1 font-[600] text-[#D4AFFF] underline'
-        >
-          Submit the request.
-        </Link>
-      </div>
-      <div className='h-0.5 w-full bg-iio'></div>
+      <div className='h-1 w-full bg-iio'></div>
       <div
-        className={`flex w-full items-center justify-between px-5 py-1 shadow-lg transition-colors duration-300 ease-in-out sm:px-8 ${
+        className={`flex w-full items-center justify-between px-5 py-1 shadow-xl transition-colors duration-300 ease-in-out sm:px-8 ${
           path !== '/' || isScrolled ? 'bg-white' : 'bg-black/40'
         }`}
       >
-        <div className='flex w-32 items-center'>
+        <div className='flex w-40 justify-start sm:pl-8'>
           <Link target='_self' href='http://iiitn-beta.vercel.app'>
             <div>
               <Image
-                className='hidden sm:block'
-                src={icon}
+                className={`absolute -top-[6px] left-[38px] hidden transition-opacity duration-150 sm:block ${path !== '/' || isScrolled ? 'opacity-0' : 'opacity-100'}`}
+                src='/logobanner.png'
+                alt='IIITN Logo'
+                width={115}
+                height={30}
+              ></Image>
+              <Image
+                className={`absolute -top-[4px] left-[15px] block transition-opacity duration-150 sm:hidden ${path !== '/' || isScrolled ? 'opacity-0' : 'opacity-100'}`}
+                src='/logobanner.png'
+                alt='IIITN Logo'
+                width={75}
+                height={30}
+              ></Image>
+            </div>
+
+            <div>
+              <Image
+                className={`hidden transition-opacity duration-150 sm:block ${path !== '/' || isScrolled ? 'opacity-100' : 'opacity-0'}`}
+                src='/logo.svg'
                 alt='IIITN Logo'
                 width={68}
                 height={30}
               />
             </div>
-            <Image className='block sm:hidden' src={icon} alt='IIITN Logo' width={45} height={50} />
+            <Image
+              className={`block transition-opacity duration-150 sm:hidden ${path !== '/' || isScrolled ? 'opacity-100' : 'opacity-0'}`}
+              src='/logo.svg'
+              alt='IIITN Logo'
+              width={45}
+              height={50}
+            />
           </Link>
         </div>
 
-        <div className='hidden items-center gap-6 text-xl text-black sm:flex sm:gap-8'>
+        <div className='hidden items-center gap-6 font-[poppins] text-xl text-black sm:flex sm:gap-8'>
           {(path !== '/' || isScrolled) && (
             <>
               {['About', 'Academics', 'Admission', 'Updates', 'Contact'].map((item) => (
@@ -81,7 +93,7 @@ export default function Navbar() {
             </>
           )}
         </div>
-        <div className='flex items-center gap-8 sm:w-32 sm:gap-8'>
+        <div className='flex justify-start gap-8 sm:w-40 sm:gap-11'>
           <button
             onClick={() => setIsSearchOpen(true)}
             className='transition-all duration-100 hover:scale-110'
@@ -112,13 +124,13 @@ export default function Navbar() {
               animate={isSidebarOpen ? { rotate: 90 } : { rotate: 0 }}
             >
               <span
-                className={`h-[2px] w-6 rounded-sm transition-transform duration-300 ${path !== '/' || isScrolled ? 'bg-black' : 'bg-white shadow-[0_0_5px_rgba(255,255,255,0.7)]'} sm:h-[3px] sm:w-8 ${isSidebarOpen ? 'translate-y-[9px] rotate-45 bg-white' : ''}`}
+                className={`h-[2px] w-6 rounded-sm transition-transform duration-300 ${path !== '/' || isScrolled ? 'bg-black' : 'bg-white shadow-[0_0_5px_rgba(255,255,255,0.7)]'} sm:h-[3px] sm:w-8 ${isSidebarOpen ? 'sm:translate-y-[9px] translate-y-[8px] rotate-45 bg-white' : ''}`}
               />
               <span
                 className={`h-[2px] w-6 rounded-sm transition-opacity duration-300 ${path !== '/' || isScrolled ? 'bg-black' : 'bg-white shadow-[0_0_5px_rgba(255,255,255,0.7)]'} sm:h-[3px] sm:w-8 ${isSidebarOpen ? 'opacity-0' : ''}`}
               />
               <span
-                className={`h-[2px] w-6 self-end rounded-sm transition-transform duration-300 ${path !== '/' || isScrolled ? 'bg-black' : 'bg-white shadow-[0_0_5px_rgba(255,255,255,0.7)]'} sm:h-[3px] sm:w-8 ${isSidebarOpen ? '-translate-y-[9px] -rotate-45 bg-white' : ''}`}
+                className={`h-[2px] w-6 self-end rounded-sm transition-transform duration-300 ${path !== '/' || isScrolled ? 'bg-black' : 'bg-white shadow-[0_0_5px_rgba(255,255,255,0.7)]'} sm:h-[3px] sm:w-8 ${isSidebarOpen ? 'sm:-translate-y-[9px] -translate-y-[8px] -rotate-45 bg-white' : ''}`}
               />
             </motion.div>
           </motion.button>
@@ -164,7 +176,7 @@ export default function Navbar() {
                 transition={{ duration: 0.3 }}
                 type='text'
                 placeholder='Search...'
-                className='mb-16 mt-4 border-b-2 border-black px-2 py-1 font-[Poppins] text-2xl font-medium text-black placeholder-black outline-none focus:border-iio sm:py-2 sm:text-4xl'
+                className='mb-16 mt-4 border-b-2 border-black px-2 py-1 font-[Poppins] text-2xl font-light text-black placeholder-black outline-none focus:border-iio sm:py-2 sm:text-4xl'
                 autoFocus
               />
 
@@ -173,15 +185,15 @@ export default function Navbar() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ delay: 0.2 }}
-                className='flex w-full flex-col content-start gap-2'
+                className='flex w-full flex-col content-start'
               >
-                <motion.div className='mb-3 w-fit px-2 font-[Poppins] text-xs text-black sm:text-sm'>
+                <motion.div className='mb-4 w-fit px-2 font-[Poppins] text-xs text-black sm:text-sm'>
                   Helpful Links
                 </motion.div>
-                <motion.button className='relative mx-2 w-fit font-[Inter] text-sm font-[600] text-iio before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-iio before:opacity-0 before:transition-all before:duration-300 after:absolute after:bottom-0 after:right-0 after:h-0.5 after:w-full after:bg-iio after:opacity-0 after:transition-all after:duration-300 hover:before:w-full hover:before:opacity-0 hover:after:w-0 hover:after:opacity-100 sm:text-base'>
+                <motion.button className='underline_custom mx-2 w-fit font-[Inter] text-sm font-[600] text-iio sm:text-base'>
                   Banner via IIITN
                 </motion.button>
-                <motion.button className='relative mx-2 w-fit font-[Inter] text-sm font-[600] text-iio before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0 before:bg-iio before:opacity-0 before:transition-all before:duration-300 after:absolute after:bottom-0 after:right-0 after:h-0.5 after:w-full after:bg-iio after:opacity-0 after:transition-all after:duration-300 hover:before:w-full hover:before:opacity-0 hover:after:w-0 hover:after:opacity-100 sm:text-base'>
+                <motion.button className='underline_custom mx-2 w-fit font-[Inter] text-sm font-[600] text-iio sm:text-base'>
                   Office of the Registrar
                 </motion.button>
               </motion.div>

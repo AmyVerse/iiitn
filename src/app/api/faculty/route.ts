@@ -5,7 +5,7 @@ const prisma = new PrismaClient()
 
 export async function GET() {
   try {
-    const fimg = await prisma.facultyImages.findFirst()
+    const fimg = await prisma.faculty.findMany({ orderBy: { id: 'desc' } })
 
     return NextResponse.json(fimg, { status: 200 })
   } catch (error) {

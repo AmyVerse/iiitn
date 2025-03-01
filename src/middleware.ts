@@ -19,10 +19,16 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL('/login', req.url))
   }
 
+  // If logged-in user tries to visit `/login`, redirect them to `/home`
+  if (user && req.nextUrl.pathname.startsWith('/login')) {
+    console.log('Redirecting to /') // Debugging
+    return NextResponse.redirect(new URL('/', req.url))
+  }
+
   return res
 }
 
-// Apply middleware ONLY to `/admin` routes
+// Apply middleware to `/admin`, `/login`, and `/api`
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/admin/:path*', '/login', '/api/:path*'],
 }
