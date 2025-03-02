@@ -59,7 +59,7 @@ const images = [
 
 export default function GalleryCarousel() {
   return (
-    <div className='grid h-[360px] grid-cols-12 grid-rows-5 gap-2 sm:gap-3 sm:h-[580px]'>
+    <div className='grid h-[360px] grid-cols-12 grid-rows-5 gap-2 sm:h-[580px] sm:gap-3'>
       {images.map((image, index) => (
         <motion.div
           key={index}
@@ -82,6 +82,18 @@ export default function GalleryCarousel() {
             <div className='h-[560px]'></div>
             <h3 className='text-lg font-bold text-white'>{image.title}</h3>
             <p className='text-sm text-white/90'>{image.description}</p>
+          </motion.div>
+          {/* phone */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 20 }} // Ensures it's hidden by default
+            whileHover={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2 }}
+            //
+            className='absolute inset-x-0 bottom-0 block bg-gradient-to-t from-black/40 via-transparent to-transparent pb-6 pl-2 sm:hidden'
+          >
+            <div className='h-[560px]'></div>
+            <h3 className='text-wrap text-base font-bold text-white'>{image.title}</h3>
           </motion.div>
         </motion.div>
       ))}

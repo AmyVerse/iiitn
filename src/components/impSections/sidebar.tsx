@@ -1,6 +1,7 @@
 'use client'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { AnimatePresence, motion } from 'framer-motion'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import RButton from '../invertButton'
 
@@ -11,6 +12,7 @@ interface MenuItem {
 
 interface LowerItem {
   label: string
+  url: string
 }
 
 const menuItems: MenuItem[] = [
@@ -37,14 +39,14 @@ const menuItems: MenuItem[] = [
 ]
 
 const lowerItems: LowerItem[] = [
-  { label: 'Home' },
-  { label: 'Events' },
-  { label: 'Information' },
-  { label: 'Career' },
-  { label: 'Parents' },
-  { label: 'Visit' },
-  { label: 'NIRF Ranking' },
-  { label: 'About Us' },
+  { label: 'Home', url: '/' },
+  { label: 'Events', url: '/events' },
+  { label: 'Information', url: '/information' },
+  { label: 'Career', url: '/career' },
+  { label: 'Parents', url: '/parents' },
+  { label: 'Visit', url: '/visit' },
+  { label: 'NIRF Ranking', url: '/nirf-ranking' },
+  { label: 'About Us', url: '/about-us' },
 ]
 
 interface SidebarProps {
@@ -175,21 +177,22 @@ export default function Sidebar({ isOpen, setIsOpenAction }: SidebarProps) {
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ delay: index * 0.05 }}
                 >
-                  <motion.button
-                    onClick={() => toggleMenu(item.label)}
-                    whileHover={{ x: 6 }}
-                    transition={{ duration: 0.03, ease: 'easeInOut' }}
-                    className='group flex w-full items-center justify-between px-3 text-left capitalize text-white/70 transition-all duration-100 hover:text-white'
-                  >
-                    <span className='font-[poppins] text-sm font-light sm:text-base'>
-                      {item.label}
-                    </span>
-                  </motion.button>
+                  <Link href={item.url}>
+                    <motion.button
+                      whileHover={{ x: 6 }}
+                      transition={{ duration: 0.03, ease: 'easeInOut' }}
+                      className='group flex w-full items-center justify-between px-3 text-left capitalize text-white/70 transition-all duration-100 hover:text-white'
+                    >
+                      <span className='font-[poppins] text-sm font-light sm:text-base'>
+                        {item.label}
+                      </span>
+                    </motion.button>
+                  </Link>
                 </motion.li>
               ))}
             </AnimatePresence>
           </ul>
-          <div className='mt-12 mb-10 flex flex-col items-center justify-start space-y-2 sm:space-y-3'>
+          <div className='mb-10 mt-12 flex flex-col items-center justify-start space-y-2 sm:space-y-3'>
             <RButton
               onClick={() => (window.location.href = '../../admin')}
               rippleColor='#291249'

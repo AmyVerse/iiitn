@@ -1,10 +1,10 @@
 // components/SpotlightList.tsx (Server Component)
-import Image from 'next/image'
 
 type Spotlight = {
   title: string
   description: string
   image: string
+  date: string
 }
 
 const SpotlightList = async () => {
@@ -17,31 +17,40 @@ const SpotlightList = async () => {
     const newsItems: Spotlight[] = await response.json()
 
     return (
-      <div className='m-8 grid w-full grid-cols-1 gap-6 px-4 sm:grid-cols-2'>
-        {newsItems.length > 0 ? (
-          newsItems.map((news) => (
-            <div key={news.title} className='overflow-hidden rounded-lg bg-white shadow-lg'>
-              <Image
-                src={news.image}
-                alt={news.title}
-                width={600}
-                height={400}
-                className='h-48 w-full object-cover'
-              />
-              <div className='p-4'>
-                <h2 className='mb-2 text-xl font-bold text-graphite'>{news.title}</h2>
-                <p className='text-taupe'>{news.description}</p>
+      <div className='mx-auto max-w-6xl px-6 py-8'>
+        <h1 className='mb-6 text-center text-3xl font-bold text-gray-800'>Latest Spotlights</h1>
+        <div className='grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3'>
+          {newsItems.length > 0 ? (
+            newsItems.map((news) => (
+              <div
+                key={news.title}
+                className='overflow-hidden rounded-2xl bg-white shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-xl'
+              >
+                <img
+                  src={news.image}
+                  alt={news.title}
+                  width={600}
+                  height={400}
+                  className='h-52 w-full object-cover'
+                />
+                <div className='p-5'>
+                  <p className='mb-1 text-sm text-gray-500'>
+                    {new Date(news.date).toLocaleDateString()}
+                  </p>
+                  <h2 className='mb-2 text-xl font-semibold text-gray-900'>{news.title}</h2>
+                  <p className='text-gray-600'>{news.description}</p>
+                </div>
               </div>
-            </div>
-          ))
-        ) : (
-          <p>No news available.</p>
-        )}
+            ))
+          ) : (
+            <p className='text-center text-lg text-gray-500'>No news available.</p>
+          )}
+        </div>
       </div>
     )
   } catch (error) {
     console.error('Error fetching news:', error)
-    return <p className='text-red-500'>Failed to load news.</p>
+    return <p className='text-center text-red-500'>Failed to load news.</p>
   }
 }
 

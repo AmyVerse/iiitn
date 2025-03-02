@@ -176,15 +176,15 @@ export default function Home() {
           </div>
 
           <div className='mb-12 flex text-center text-lg font-normal text-black sm:text-[22px] sm:leading-relaxed'>
-            We are committed to pioneering research that drives innovation and technological
-            advancement.
+            Our research initiatives are at the forefront of technological innovation, addressing
+            critical challenges in various fields. We focus on interdisciplinary research that
+            bridges the gap between academia and industry, fostering a collaborative environment
+            where ideas can thrive.
             <br />
             <br />
-            Admissions for the first semester of our Bachelor of Technology (B.Tech) programs in
-            Computer Science and Engineering (CSE) and Electronics and Communication Engineering
-            (ECE) are conducted through JoSAA, starting in August. Our faculty and students actively
-            engage in cutting-edge research across various domains, fostering a culture of curiosity
-            and discovery.
+            Our dedicated faculty and students work on groundbreaking projects in areas such as
+            artificial intelligence, cybersecurity, data science, and more, contributing to the
+            advancement of knowledge and technology.
           </div>
           <div className='flex justify-center'>
             <Link href={'/about'} prefetch>

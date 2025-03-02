@@ -124,13 +124,13 @@ export default function Navbar() {
               animate={isSidebarOpen ? { rotate: 90 } : { rotate: 0 }}
             >
               <span
-                className={`h-[2px] w-6 rounded-sm transition-transform duration-300 ${path !== '/' || isScrolled ? 'bg-black' : 'bg-white shadow-[0_0_5px_rgba(255,255,255,0.7)]'} sm:h-[3px] sm:w-8 ${isSidebarOpen ? 'sm:translate-y-[9px] translate-y-[8px] rotate-45 bg-white' : ''}`}
+                className={`h-[2px] w-6 rounded-sm transition-transform duration-300 ${path !== '/' || isScrolled ? 'bg-black' : 'bg-white shadow-[0_0_5px_rgba(255,255,255,0.7)]'} sm:h-[3px] sm:w-8 ${isSidebarOpen ? 'translate-y-[8px] rotate-45 bg-white sm:translate-y-[9px]' : ''}`}
               />
               <span
                 className={`h-[2px] w-6 rounded-sm transition-opacity duration-300 ${path !== '/' || isScrolled ? 'bg-black' : 'bg-white shadow-[0_0_5px_rgba(255,255,255,0.7)]'} sm:h-[3px] sm:w-8 ${isSidebarOpen ? 'opacity-0' : ''}`}
               />
               <span
-                className={`h-[2px] w-6 self-end rounded-sm transition-transform duration-300 ${path !== '/' || isScrolled ? 'bg-black' : 'bg-white shadow-[0_0_5px_rgba(255,255,255,0.7)]'} sm:h-[3px] sm:w-8 ${isSidebarOpen ? 'sm:-translate-y-[9px] -translate-y-[8px] -rotate-45 bg-white' : ''}`}
+                className={`h-[2px] w-6 self-end rounded-sm transition-transform duration-300 ${path !== '/' || isScrolled ? 'bg-black' : 'bg-white shadow-[0_0_5px_rgba(255,255,255,0.7)]'} sm:h-[3px] sm:w-8 ${isSidebarOpen ? '-translate-y-[8px] -rotate-45 bg-white sm:-translate-y-[9px]' : ''}`}
               />
             </motion.div>
           </motion.button>

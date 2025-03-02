@@ -220,15 +220,15 @@ export function Footer() {
           </p>
         </div>
         <div className='flex w-full flex-row justify-center text-wrap bg-[#281246] px-3 py-1 text-xs text-white sm:text-sm'>
-        <span>Any incorrect/missing info?</span>
-        <Link
-          target='_blank'
-          href='https://forms.gle/FSBg4Bb2SJEpHTux9'
-          className='ml-1 font-[600] text-[#D4AFFF] underline'
-        >
-          Submit the request.
-        </Link>
-      </div>
+          <span>Any incorrect/missing info?</span>
+          <Link
+            target='_blank'
+            href='https://forms.gle/FSBg4Bb2SJEpHTux9'
+            className='ml-1 font-[600] text-[#D4AFFF] underline'
+          >
+            Submit the request.
+          </Link>
+        </div>
       </footer>
     </div>
   )

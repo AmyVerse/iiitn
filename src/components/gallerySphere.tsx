@@ -40,11 +40,10 @@ export default function GallerySphere() {
     <div className='relative z-10 flex w-auto flex-col items-center gap-4 sm:flex-row'>
       {/* Image Slider Container */}
       <div className='relative flex items-center sm:flex-col'>
-
         {/* Navigation Arrows */}
         <button onClick={prevSlide} className='text-black'>
           <svg
-            className='mb-3 max-sm:mr-2 h-8 sm:rotate-180 rotate-90 sm:h-12 sm:w-12'
+            className='mb-3 h-8 rotate-90 max-sm:mr-2 sm:h-12 sm:w-12 sm:rotate-180'
             fill='none'
             stroke='currentColor'
             viewBox='0 0 24 24'
@@ -80,7 +79,7 @@ export default function GallerySphere() {
 
         <button onClick={nextSlide} className='text-black'>
           <svg
-            className='mt-3 max-sm:ml-2 h-8 max-sm:-translate-y-3 sm:rotate-0 -rotate-90 sm:h-12 sm:w-12'
+            className='mt-3 h-8 -rotate-90 max-sm:ml-2 max-sm:-translate-y-3 sm:h-12 sm:w-12 sm:rotate-0'
             fill='none'
             stroke='currentColor'
             viewBox='0 0 24 24'
@@ -97,7 +96,7 @@ export default function GallerySphere() {
       </div>
 
       {/* Number Circle Tracker (Right Side) */}
-      <div className='flex max-sm:h-10 items-center gap-4 sm:flex-col'>
+      <div className='flex items-center gap-4 max-sm:h-10 sm:flex-col'>
         {images.map((_, i) => (
           <div
             key={i}

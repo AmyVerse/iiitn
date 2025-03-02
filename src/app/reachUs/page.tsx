@@ -1,6 +1,6 @@
 export default function Contact() {
   return (
-    <div className='z-10 flex flex-col items-center justify-center bg-gray-200'>
+    <div className='z-10 flex flex-col items-center justify-center bg-gray-200 pb-6'>
       {/* Header Section */}
       <div className='relative h-64 w-full'>
         <img

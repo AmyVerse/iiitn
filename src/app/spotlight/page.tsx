@@ -13,7 +13,9 @@ const News = () => {
           className='absolute inset-0 h-full w-full object-cover'
         />
         <div className='absolute inset-0 flex items-center justify-center bg-black/40'>
-          <h1 className='text-5xl font-bold text-white rounded-lg px-3 py-3 backdrop-blur-lg'>Spotlight</h1>
+          <h1 className='rounded-lg px-3 py-3 text-5xl font-bold text-white backdrop-blur-lg'>
+            Spotlight
+          </h1>
         </div>
       </div>
 

@@ -2,7 +2,7 @@
 
 type Faculty = {
   name: string
-  designation: string
+  url: string
 }
 
 const Fac = async () => {
@@ -15,24 +15,24 @@ const Fac = async () => {
     const links: Faculty[] = await response.json()
 
     return (
-      <div className='flex h-[800px] flex-col items-center justify-center bg-gray-200 p-10'>
+      <div className='flex flex-col items-center justify-center p-10'>
         <h1 className='mb-6 text-center text-4xl font-bold text-black'>Realtime fetching</h1>
-        <div className='flex flex-row justify-between gap-8 space-y-4'>
+        <div className='mb-9 grid grid-cols-2 justify-between gap-4 space-y-4 sm:grid-cols-4'>
           {links.length > 0 ? (
             links.map((link) => (
               <div
                 key={link.name}
-                className='flex w-80 flex-col rounded-lg bg-white p-4 text-center shadow-lg'
+                className='flex flex-col rounded-lg bg-white p-4 text-center shadow-lg sm:w-80'
               >
                 <a
-                  href={link.designation}
+                  href={link.url}
                   target='_blank'
                   rel='noopener noreferrer'
                   className='text-xl font-semibold text-blue-600 hover:underline'
                 >
                   {link.name}
                 </a>
-                <img src={link.name} alt={link.name} className='flex flex-row bg-black' />
+                <img src={link.url} alt={link.name} className='flex flex-row bg-black' />
               </div>
             ))
           ) : (

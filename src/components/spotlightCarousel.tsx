@@ -14,46 +14,46 @@ const gridClasses: { [key: string]: string } = {
 
 const images = [
   {
-    src: '/carousel/camp1.jpg',
+    src: '/news.jpg',
     alt: 'Image 1',
     area: 'one',
-    title: 'Acaedmic Block',
-    description: 'Experience the vibrant atmosphere',
+    title: 'News 1',
+    description: 'Latest updates from the campus.',
   },
   {
-    src: '/carousel/camp2.jpg',
+    src: '/news.jpg',
     alt: 'Image 2',
     area: 'two',
-    title: 'Campus Hostel',
-    description: 'Where you feel at home',
+    title: 'News 2',
+    description: 'Where you feel at home. College fest coming soon!',
   },
   {
-    src: '/carousel/camp3.jpg',
+    src: '/news.jpg',
     alt: 'Image 3',
     area: 'three',
-    title: 'Sports',
-    description: 'Unleash your potential',
+    title: 'News 3',
+    description: 'Unleash your potential. New courses available.',
   },
   {
-    src: '/carousel/camp4.jpg',
+    src: '/news.jpg',
     alt: 'Image 4',
     area: 'four',
-    title: 'Entrance',
-    description: 'Welcome to a new world',
+    title: 'News 4',
+    description: 'Welcome to a new world. Join our tech club.',
   },
   {
-    src: '/carousel/camp5.jpg',
+    src: '/news.jpg',
     alt: 'Image 5',
     area: 'five',
-    title: 'Amp.',
-    description: 'Where ideas come to life',
+    title: 'News 5',
+    description: 'Where ideas come to life. Innovation week starts Monday.',
   },
   {
-    src: '/carousel/camp6.jpg',
+    src: '/news.jpg',
     alt: 'Image 6',
     area: 'six',
-    title: 'The Campus',
-    description: 'A place to grow',
+    title: 'News 6',
+    description: 'A place to grow. Internship opportunities available.',
   },
 ]
 
@@ -70,31 +70,18 @@ export default function SpotlightCarousel() {
           transition={{ type: 'spring', stiffness: 200, damping: 20 }}
         >
           <Image src={image.src} alt={image.alt} fill className='rounded-xl object-cover' />
-          {/* Hidden by default, appears on hover anywhere on the image */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 0, y: 20 }} // Ensures it's hidden by default
-            whileHover={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.2 }}
-            //
-            className='absolute inset-x-0 bottom-0 hidden bg-gradient-to-t from-black/80 via-black/20 to-transparent p-4 opacity-0 group-hover:opacity-100 sm:block'
-          >
-            <div className='h-[560px]'></div>
-            <h3 className='text-lg font-bold text-white'>{image.title}</h3>
-            <p className='text-sm text-white/90'>{image.description}</p>
-          </motion.div>
 
-          {/* phone */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 20 }} // Ensures it's hidden by default
             whileHover={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.2 }}
             //
-            className='absolute inset-x-0 bottom-0 block bg-gradient-to-t from-black/40 via-transparent to-transparent pb-6 pl-2 sm:hidden'
+            className='absolute inset-x-0 bottom-0 block bg-gradient-to-t from-black/40 via-transparent to-transparent pb-6 pl-2 sm:pb-8 sm:pl-3'
           >
             <div className='h-[560px]'></div>
-            <h3 className='text-wrap text-base font-bold text-white'>{image.title}</h3>
+            <h3 className='text-wrap text-base font-bold text-white sm:text-xl'>{image.title}</h3>
+            <p className='hidden text-base text-white/90 sm:block'>{image.description}</p>
           </motion.div>
         </motion.div>
       ))}
