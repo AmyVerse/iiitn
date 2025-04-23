@@ -59,5 +59,7 @@ Thank you for visiting our repository! We hope you find this project useful and 
 ## Team Behind
 
 - Amulya Yadav
-- Om Vatsal
+- Aarya Pandhare
+- Rutva Gandhi
+- Tanuj Game
 - Sarthak Gupta
